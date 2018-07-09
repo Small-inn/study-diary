@@ -1,4 +1,5 @@
 ## vue-filter
+---
 > 常见的文件格式化，双花括号和v-bind表达式
 ```
 <!-- 在双花括号中 -->
@@ -8,7 +9,8 @@
 <div v-bind:id="rawId | formatId"></div>
 ```
 
-## 新建一个js, vfilter.js,并在main.js中注册
+#### 新建一个js, vfilter.js,并在main.js中注册
+---
 ```
     const vfilter = {
         limitWord: function(title) {
