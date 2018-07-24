@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+	<style>
+		* {
+			margin: 0;
+			padding : 0;
+		}
+		.box {
+			width: 100px;
+			height: 100px;
+			background-color: red;
+		}
+		.bg {
+			background-color: cyan;
+		}
+		.red {
+			background-color: red;
+		}
+	</style>
+<body>
+	<div class="box">
+		
+	</div>
+	<input type="text" id="input">
+	<div class="show_info">
+		
+	</div>
+	<script>
+		const box = document.querySelector('.box')
+
+		box.addEventListener('click', () => {
+			box.classList.toggle('bg')
+			console.log(box.classList.contains('bg'))
+			console.log(box.classList.item(0))
+		})
+
+		document.querySelector('input[type=text]').addEventListener('input', () => {
+			const val = document.querySelector('input[type=text]').value
+			const show_info = document.querySelector('.show_info') 
+			setTimeout(() => {
+				if (val != '552211') {
+					show_info.innerHTML = '输入信息不正确！'
+					show_info.classList.add('red')
+				} else {
+					show_info.innerHTML = '输入信息正确！'
+					show_info.classList.remove('red')
+					show_info.classList.add('bg')
+				}	
+			},2000)
+		})
+
+
+		console.log(document.DOMContentLoaded)
+	</script>
+</body>
+</html>
