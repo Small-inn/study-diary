@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .box {
+      margin: 0 auto;
+      width: 140px;
+      height: 145px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: url('./animate.jpg') no-repeat 0 -160px;
+      animation: run 5s steps(6) infinite, go 5s linear infinite alternate;
+    }
+    @keyframes run {
+      0% {
+        background-position: 0 -160px;
+      }
+      /* 50% {
+        background-position: -450px 0;
+      } */
+      100% {
+        background-position: -900px -160px;
+      }
+    }
+    @keyframes go {
+      0% {
+        left: 0;
+      }
+      100% {
+        left: 760px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+</body>
+</html>
