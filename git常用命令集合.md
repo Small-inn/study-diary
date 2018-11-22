@@ -68,3 +68,4 @@
 * git push origin --delete BranchName --删除远程分支 
 * git checkout -b test origin/test 切换并绑定远程分支
 * git fetch --all  git reset --hard origin/master git pull origin/master (三个命令)
+* 
