@@ -35,7 +35,7 @@ Vue.filter('currency', function(value, type = '￥', decimals = 2) {
  */
 Vue.filter('orderStatus', function(val) {
     return {
-        '' : '全部',
+        ALL : '全部',
         NEW_ORDER: '待支付',
         SHIPMENTS: '待收货'
     }
