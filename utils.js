@@ -34,6 +34,62 @@ const isDeepColor = (color) => {
     }
 } 
 
+/**
+ * 斐波那契数列
+ * @param {number} n 
+ * @return {number} 
+ */
+
+ const fibn = (n) => {
+     let fibArr = [0, 1]
+     if (n <= 2) return 1
+     for (let i = 0; i < n; i++) {
+        fibArr[i] = fibArr[i - 1] + fibArr[i - 2]
+     }
+     return fibArr[n]
+ }
+//  递归版
+const fibonacci = (n) => {
+    if (n === 1 || n === 2) return n
+    return fibonacci(n - 1) +fibonacci(n - 2)
+} 
+
+/**
+ * 判断一个数是否为素数（质数）
+ * @param {number} n
+ * @return {boolean} true 是 false 否
+ */
+// 第一版
+const isPrimeOne = (n) => {
+    let divisor = 2
+    while (n > divisor) {
+        if ( n % divisor === 0) {
+            return true
+        } else {
+            divisor++
+        }
+    }
+}
+// 升级版
+const isPrime = (n) => {
+    // 任何数字都不能被大于它一半的数整除，如果一个数不能被3整除，它不可能被大于它1/3的数整除
+    let divisor = 3 
+    let limit = Math.sqrt(n) // 求这个数的平方根
+    if (n === 2 || n === 3) {
+        return true
+    }
+    if (n % 2 === 0) {
+        return false
+    }
+    while (n <= limit) {
+        if (n % divisor === 0) {
+            return false
+        } else {
+            divisor += 2
+        }
+    }
+    return true
+}
 
 /**
  * 求两个数的最大公约数(欧几里得算法)
@@ -51,6 +107,18 @@ const getGcd = (a, b) => {
         return a;
 }
 
+/**
+ * 使用递归算法
+ * @param {*} x 
+ * @param {*} y 
+ */
+const gcdD = (x, y) => {
+    if (y === 0) {
+        return a
+    } else {
+        return gcdD(y, x % y)
+    }
+}
 /**
  * 求两个数的最大公约数
  * @param {number} x 

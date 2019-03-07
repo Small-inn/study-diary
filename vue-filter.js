@@ -38,5 +38,5 @@ Vue.filter('orderStatus', function(val) {
         ALL : '全部',
         NEW_ORDER: '待支付',
         SHIPMENTS: '待收货'
-    }
+    }[val]
 })
