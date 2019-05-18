@@ -196,3 +196,43 @@ const deepFlatten = arr => [].concat(...arr.map(v => (Array.isArray(v) ? deepFla
 
 const deepFlatten2 = arr => arr.reduce((x, y) => x.concat(y), [])
 
+/**
+ * 
+ * 判断回文字符串
+ * @param {string} str
+ * @return {boolean} 
+ */
+const isPalindrome = (str) => {
+    let i, len = str.length
+    for (i = 0; i < len / 2; i++) {
+        if (str[i] !== str[len - i - 1])
+            return false
+    }
+    return true
+}
+
+const isPalindromeOther = (str) => {
+    return str === str.split('').reverse().join('')
+}
+
+/**
+ * 
+ * 给出1-100的未排序数组中查找缺失的数
+ * @param {array} arr
+ * @return {number} 
+ *
+ */
+const missingNumber = (arr) => {
+    const ARR_LEN = arr.length + 1
+    const TOTAL_COUNT = ARR_LEN * (ARR_LEN + 1) / 2
+    let sum
+    for (let i = 0; i < ARR_LEN; i++) {
+        sum += arr[i]
+    }
+    return TOTAL_COUNT - sum
+}
+
+// 判断是否是闰年
+const leapYear = (year) => {
+    return !(year % (year % 100 ? 4 : 400 ))
+}
