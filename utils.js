@@ -236,3 +236,15 @@ const missingNumber = (arr) => {
 const leapYear = (year) => {
     return !(year % (year % 100 ? 4 : 400 ))
 }
+
+// 交换值
+let a = 1, b = 2
+[a, b] = [b, a]
+
+// 快速创建100个1的数组
+const numArr = Array.from(new Array(100), (v, k) => 1)
+
+
+// 货币千分位
+const thousands = (num) => { return (num || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,')}
+
