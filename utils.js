@@ -196,6 +196,8 @@ const deepFlatten = arr => [].concat(...arr.map(v => (Array.isArray(v) ? deepFla
 
 const deepFlatten2 = arr => arr.reduce((x, y) => x.concat(y), [])
 
+const deepFlatten3 = arr => arr.flat(Infinity) // es6语法 
+
 /**
  * 
  * 判断回文字符串
