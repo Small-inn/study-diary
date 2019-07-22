@@ -12,9 +12,12 @@
     让 class 成为 O 的内部属性 [[Class]] 的值
     最后返回由 "[object " 和 class 和 "]" 三个部分组成的字符串
  */
-  const type = (obj) => {
-    if (obj == null) return obj + ''
-    return typeof obj === 'object' || typeof obj === 'function' ? 
-      Object.prototype.toString.call(obj).slice(8, -1).toLowerCase() || 'object' :
-      typeof obj
-  }
+const type = obj => {
+  if (obj == null) return obj + ''
+  return typeof obj === 'object' || typeof obj === 'function'
+    ? Object.prototype.toString
+        .call(obj)
+        .slice(8, -1)
+        .toLowerCase() || 'object'
+    : typeof obj
+}

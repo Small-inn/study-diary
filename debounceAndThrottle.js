@@ -1,9 +1,9 @@
 /**
-  * 防抖函数
-  * @param fn 事件触发操作
-  * @param delay 多少毫秒内连续触发事件，不会执行
-  * @returns { function }
-  * 
+ * 防抖函数
+ * @param fn 事件触发操作
+ * @param delay 多少毫秒内连续触发事件，不会执行
+ * @returns { function }
+ *
  */
 
 function debounce(fn, delay) {
@@ -24,11 +24,11 @@ window.scroll = debounce(function() {
 }, 200)
 
 /**
-  * 节流函数
-  * @param fn 事件触发操作
-  * @param delay 间隔多少毫秒需要触发一次事件
-  * @returns { function }
-  * 
+ * 节流函数
+ * @param fn 事件触发操作
+ * @param delay 间隔多少毫秒需要触发一次事件
+ * @returns { function }
+ *
  */
 // 首次不执行
 function nFirstThrottle(fn, delay) {
