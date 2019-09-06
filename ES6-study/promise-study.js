@@ -105,3 +105,60 @@ getJson(url).then(res => {
 }).catch(err => {
   console.log(err)
 })
+
+
+/** 
+ * Promise.all(): 该方法用于将多个Promise实例，包装成一个新的Promise实例
+ * 接受一个数组作为一个参数，p1, p2, p3都是Promise实例，如果不是就会调用Promise.resolve(),将参数转为Promise实例再进一步处理，
+ * （Promise.all的参数可以不是数组，但必须要是Iterator接口，且每个返回的成员都是Promise实例）
+ */
+
+const p = Promise.all([p1, p2, p3])
+// p的状态由p1, p2, p3决定，
+//（1）只有p1, p2, p3的状态都变成了fulfilled, p的状态才会变成fulfilled,此时p1, p2, p3的返回值组成一个数组，传递给p的回调
+// （2）p1, p2, p3的状态只要有一个变成rejected，此时第一个被reject的实例的返回值，会传递给p的回调函数
+
+const databasePromise = connectDatabase()
+
+const booksPromise = databasePromise
+  .then(findAllBooks)
+
+const userPromise = databasePromise
+  .then(getCurrentUser)
+
+Promise.all([
+  booksPromise,
+  userPromise
+])
+.then(([books, user]) => pickTopRecommendations(books, user))
+
+/** 
+ * Promise.race() 将多个Promise实例包装成一个新的Promise实例
+ * 与Promise.all() 不同的是只要race参数中的一个实例率先改变状态，则跟着改变，那个率先改变的Promise实例的返回值，就传递给回调函数
+ */
+
+const p = Promise.race([
+  fetch('/resource-that-may-take-a-while'),
+  new Promise(function (resolve, reject) {
+    setTimeout(() => reject(new Error('request timeout')), 5000)
+  })
+])
+
+p.then(console.log).catch(console.error)
+
+/** 
+ * Promise.resolve()
+ * 有时需要将现有对象转为 Promise 对象，Promise.resolve方法就起到这个作用。
+ * 1. 如果参数是一个Promise，则返回这个Promise实例
+ * 2. 参数是一个thenable对象，是指具有then方法的对象； 例如：let thenable = { then: function(resolve,reject) { resolve(33) } }  
+ * 3. 如果参数不具有then方法的对象，或者根本就不是对象，则Promise.resolve()返回新的Promise对象
+ */
+
+Promise.resolve('foo') 
+// 等同于
+new Promise(resolve => resolve('foo'))
+
+/**  
+ * Promise.reject(): 返回一个新的Promise实例，状态为rejected
+ * 与resolve方法不同的是参数会原封不动的作为reject的参数
+ */
