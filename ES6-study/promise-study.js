@@ -132,6 +132,25 @@ Promise.all([
 ])
 .then(([books, user]) => pickTopRecommendations(books, user))
 
+// 需要注意的是：注意，如果作为参数的 Promise 实例，自己定义了catch方法，那么它一旦被rejected，并不会触发Promise.all()的catch方法。
+
+const p1 = new Promise((resolve, reject) => {
+  resolve('hello');
+})
+.then(result => result)
+.catch(e => e);
+
+const p2 = new Promise((resolve, reject) => {
+  throw new Error('报错了')
+})
+.then(result => result)
+.catch(e => e)
+
+Promise.all([p1, p2])
+.then(result => console.log(result))
+.catch(e => console.log(e))
+// ["hello", Error: 报错了]
+
 /** 
  * Promise.race() 将多个Promise实例包装成一个新的Promise实例
  * 与Promise.all() 不同的是只要race参数中的一个实例率先改变状态，则跟着改变，那个率先改变的Promise实例的返回值，就传递给回调函数
