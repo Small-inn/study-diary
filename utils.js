@@ -255,6 +255,8 @@ let a = 1,
 // 快速创建100个1的数组
 const numArr = Array.from(new Array(100), (v, k) => 1)
 
+new Array(100).fill(1)
+
 // 货币千分位
 const thousands = num => {
   return (num || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,')
