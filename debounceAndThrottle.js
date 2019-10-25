@@ -1,5 +1,5 @@
 /**
- * 防抖函数
+ * 防抖函数：某个时间段内,只执行一次
  * @param fn 事件触发操作
  * @param delay 多少毫秒内连续触发事件，不会执行
  * @returns { function }
@@ -24,7 +24,7 @@ window.scroll = debounce(function() {
 }, 200)
 
 /**
- * 节流函数
+ * 节流函数：处理函数截止后一段时间依次执行
  * @param fn 事件触发操作
  * @param delay 间隔多少毫秒需要触发一次事件
  * @returns { function }
