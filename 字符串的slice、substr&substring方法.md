@@ -35,7 +35,7 @@ str.slice(-3) ==> str.slice(8) // rld
 // substr 方法将负数加上字符串的长度
 str.substr(-3) // rld
 // substring 方法将负数参数转化为 0
-str.substring(-3) // lo world
+str.substring(-3) =>> str.substring(0) // hello world
 
 <!-- 第二个参数为负数 -->
 
