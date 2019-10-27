@@ -12,15 +12,21 @@
 
 3.http
 
-3.1 method
+- 3.1 method
 
 > 用来定义对于资源的操作
+> get&post
 
-- get
-- post
-
-  3.2 code
+- 3.2 code
 
 > 定义服务器对请求的处理结果
 
-4.
+4. CORS 跨域请求
+5. Cache-Control 缓存头
+6. 缓存验证 Last-Modified 和 Etag
+   > Last-Modified:上次修改时间，配合 If-Modified-Since 或者 If-Unmodified-Since 使用，对比上次修改时间以验证资源是否需要更新
+   > Etag:数据签名，配合 If-Match 或者 If-Non-Match 使用，对比资源的签名判断是否使用缓存
+
+7.Cookie&session
+
+> （1）通过 set-cookie 设置，（2）max-age 和 expires 来设置过期时间，（3）secure 只在 https 的时候发送，（4）在设置 HTTPonly 之后就无法通过 document.cookie 访问
