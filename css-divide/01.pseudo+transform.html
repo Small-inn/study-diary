@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>伪元素+transform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .title {
+            margin: 8px;
+            position: relative;
+            text-align: center;
+            overflow: hidden;
+            font-size: 14px;
+            color: #999;
+        }
+
+        .title::before,
+        .title::after {
+            content: '';
+            display: inline-block;
+            width: 50%;
+            height: 1px;
+            position: absolute;
+            background-color: #ccc;
+            top: 50%;
+        }
+
+        .title::before {
+            margin-left: -10px;
+            transform: translateX(-100%);
+        }
+
+        .title::after {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="title">我是分割线</div>
+</body>
+
+</html>

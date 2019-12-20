@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>伪元素+flex</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .title {
+            margin: 8px;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #999;
+        }
+
+        .title::before,
+        .title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background-color: #ccc;
+        }
+
+        .title::before {
+            margin-right: 10px;
+        }
+
+        .title::after {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="title">我是分割线</div>
+</body>
+
+</html>
