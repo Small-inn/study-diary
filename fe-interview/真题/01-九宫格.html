@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>九宫格</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .box {
+            margin: 100px auto;
+            width: 300px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            /* 1.0 */
+            /* border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc; */
+        }
+        .item {
+            /* flex: calc(100% / 3); */
+            flex: 0 0 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            box-sizing: border-box;
+            /* 1.0 */
+            /* border-top: 1px solid #ccc;
+            border-left: 1px solid #ccc; */
+            /* 2.0 负边距*/
+            border: 2px solid #ccc;
+            margin-top: -2px;
+            margin-left: -2px;
+        }
+        .item:nth-child(3n+1) {
+            margin-left: 0;
+            /* margin-top: 0; */
+        }
+        .item:hover {
+            border-color: red;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+        <div class="item">9</div>
+    </div>
+</body>
+</html>
