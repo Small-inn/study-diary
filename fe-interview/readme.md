@@ -1,4 +1,50 @@
-## 二、三 面试技巧（技术）
+## 一、二面试技术
+1.通信类
+    a).什么是同源策略及限制
+        >限制从一个源（协议、域名、端口）加载的文档或者脚本如何与来自另一个源的资源进行交换，用于隔离潜在恶意文件的关键的安全机制
+        i).cookie、localStorage、indexDB无法读取
+        ii).DOM无法获得（主要指另一个源的DOM）
+        iii).Ajax请求不能发送(Ajax不能跨域请求，只能同源通信)
+    b).前后端如何通信
+        i).Ajax
+        ii).WebSocket
+        iii).CORS
+    c).如何创建Ajax(考察点)
+        i).XMLHttpRequest对象的工作流程
+        ii).兼容性的处理
+        iii).事件的触发条件
+        vi).事件的触发顺序
+    d).跨域通信的几种方式
+        1).JSONP
+        2).Hash
+        3).postMessage
+            <!-- 窗口A向窗口B发送信息,在B窗口下window对象监听message事件 -->
+            Window.postMessage('data', 'http://B.com')
+            <!-- 在B窗口监听 -->
+            window.addEventListener('message', function(event) {
+                console.log(event)
+            }, false)
+        4).WebSocket
+            <!-- 参考阮一峰的博客 -->
+            let ws = new WebScoket('wss://echo.websocket.org')
+            ws.onopen = funciton(ev) {
+                ws.send(data)
+            }
+            ws.onmessage = funciton(ev) {
+                ws.close()
+            }
+            ws.onclose = funciton(ev) {}
+        5).CORS
+2.安全类
+    a).CSRF(Cross-site request forgery 跨站请求伪造)，原理：登录Cookie/get，防御原理：Token验证、Refer验证、隐藏令牌 
+    b).XSS(Cross-site scripting 跨域脚本攻击)
+3.算法类
+    a).排序
+    b).堆栈、队列、链表
+    c).递归
+    d).波兰式和逆波兰式 
+
+## 二、三 面试技巧（技巧&&技术）
 
 1. 知识面要广
 2. 理解要深刻
@@ -113,3 +159,21 @@
     b).近阶段的目标
     c).长期目标
     d).方式方法
+
+## 面试总结
+1. JD描述
+2. 简历
+    对照JD写出相符合的简历，对于未掌握的技术栈快速复习、理解
+3. 自我介绍
+    事先打好草稿，展示优势，描述什么项目，切忌临场发挥
+
+## 一面
+重基础、懂原理、要思考、知进退、然后势不可挡
+## 二面
+横向扩展、项目结合、做到有的放矢
+## 三面
+有经验、懂合作、有担当、懂规矩、察言观色
+## 终面
+会沟通、要上进、好性格、有主见、强逻辑、无可挑剔
+## 复盘
+胜不骄、败不馁、总结经验、步步为营、多拿offer
