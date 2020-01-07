@@ -80,8 +80,17 @@
 2.
 
 ## 渲染机制
+1.什么是DocType
+    >是用来来声明文档类型定义和DTD(Document type definition, 文档类型定义),主要作用是文件的合法性校验  
+2.浏览器是如何渲染的
+    >HTML --> HTML Parser --> DOM Tree && Style Sheets --> CSS Parser --> Style Rules(CSSOM Tree) ==(Attachment)==> Render Tree --> Painting --> display
+3.reflow和repaint
+4.布局Layout
 
 ## js 运行机制
+1.理解JS单线程
+2.任务队列
+3.Event Loop
 
 ## 页面性能
 
@@ -118,6 +127,12 @@
 `(new Image()).src = 'http://www.baidu.com/test?x=hhhh&y=kkkk'`
 
 ## MVVM 框架
+1.了解MVVM框架吗
+2.谈谈对MVVM框架的认识
+3.双向绑定的原理
+4.使用了什么设计模式
+5.生命周期
+6.源码
 
 ## 三、四面 面试技巧（技术总监）
  
