@@ -128,10 +128,14 @@
 
 ## MVVM 框架
 1.了解MVVM框架吗
+    Vue.js React.js Angular.js
 2.谈谈对MVVM框架的认识
+    model ===> ViewModel <===> view
 3.双向绑定的原理
-4.使用了什么设计模式
-5.生命周期
+    view ==(input事件)==> data, data ==(Object.defineProperty)==> view
+4.设计模式
+    观察者模式：Observe监听Data数据变化，通知Dep回调Watcher，Watcher订阅Dep，更新View
+5.生命周期 
 6.源码
 
 ## 三、四面 面试技巧（技术总监）
