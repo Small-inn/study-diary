@@ -1,4 +1,7 @@
 #### git命令
+
+---
+- 修改git--config文件的url: https://[username]:[password]@github.com/....
 ---
 1. 比较差异
 - 比较的是暂存区和工作区的差异
