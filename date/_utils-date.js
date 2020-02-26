@@ -111,18 +111,18 @@ function compareDate(d1, d2) {
 
 /**
  * 验证一个日期是不是今天
-* @param  {string} val 需要验证的日期
-* @return {boolean} 返回布尔值
-*/
-function isToday(val){
+ * @param  {string} val 需要验证的日期
+ * @return {boolean} 返回布尔值
+ */
+function isToday(val) {
     return new Date().toLocaleDateString() == new Date(val).toLocaleDateString();
 }
 
 /**
  * 验证传入的日期是否是昨天
-* @param  {string} val 需要验证的日期
-* @return {boolean} 返回布尔值
-*/
+ * @param  {string} val 需要验证的日期
+ * @return {boolean} 返回布尔值
+ */
 function isYesterday(val) {
     let now = new Date()
     let yesterday = new Date(now - 1000 * 60 * 60 * 24)
@@ -136,16 +136,16 @@ function isYesterday(val) {
 
 /**
  * 设置几天后的日期
-* @param  {string} date 起始日期
-* @param  {number} day 向后的天数
-* @return {string} 返回想要得到的日期
-*/
-function convertDate (date, day) {
+ * @param  {string} date 起始日期
+ * @param  {number} day 向后的天数
+ * @return {string} 返回想要得到的日期
+ */
+function convertDate(date, day) {
     let tempDate = new Date(date)
-    tempDate.setDate(tempDate.getDate()+day)
+    tempDate.setDate(tempDate.getDate() + day)
     let Y = tempDate.getFullYear()
-    let M = tempDate.getMonth()+1 < 10 ? '0'+(tempDate.getMonth()+1) : tempDate.getMonth()+1
-    let D = tempDate.getDate() < 10 ? '0'+(tempDate.getDate()) : tempDate.getDate()
+    let M = tempDate.getMonth() + 1 < 10 ? '0' + (tempDate.getMonth() + 1) : tempDate.getMonth() + 1
+    let D = tempDate.getDate() < 10 ? '0' + (tempDate.getDate()) : tempDate.getDate()
     let result = Y + "-" + M + "-" + D
     return result
 }
