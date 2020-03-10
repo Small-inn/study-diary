@@ -40,6 +40,7 @@ const isDeepColor = color => {
  * @return {number}
  */
 
+// 数组版
 const fibn = n => {
   let fibArr = [0, 1]
   if (n <= 2) return 1
