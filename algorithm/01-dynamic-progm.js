@@ -1,3 +1,10 @@
+/**
+ * 动态规划：
+ * 此文件为动态规划算法的学习
+ * Author： Small-inn
+ * CreateTime: 2020-03-10
+ * 
+*/
 // 利用动态规划处理斐波那契数列
 // 1.0
 function iterFib(n) {
@@ -27,7 +34,9 @@ function iterFib2(n) {
     return res
 }
 
-// 寻找最长公共子串
+/**
+ * 寻找两个字符串中最长公共子串
+ * */ 
 function lcs(word1, word2) {
     let max = 0, index = 0, str = ''
     // 初始化二维数组
