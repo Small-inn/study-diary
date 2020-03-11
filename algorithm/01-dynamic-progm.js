@@ -71,3 +71,55 @@ function lcs(word1, word2) {
     }
 }
 // lcs('aabbcc', 'aaccbb')
+
+/** 
+ * 爬梯子问题
+ * 假设你正在爬楼梯。需要 n 阶你才能到达楼顶。每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？
+*/
+function climbStairs(n) {
+    if (n === 1 || n === 2) {
+        return n
+    }
+    let ways = []
+    ways[0] = 1
+    ways[1] = 2
+
+    for (i = 2; i < n; i++) {
+        ways[i] = ways[i - 1] + ways[i - 2]
+    }
+    return ways[n - 1]
+}
+
+/** 
+ * 动态规划之路径问题
+ * 问题描述：
+ * 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
+ * 机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。
+ * 问总共有多少条不同的路径？
+*/
+function countPaths(m, n) {
+    let ways = new Array(m + 1)
+    for (let i = 0; i <= m; i++) {
+        ways[i] = new Array(n + 1)
+    }
+    // 扩展一行
+    for (let i = 0; i <= n; i++) {
+        ways[0][i] = 0
+    }
+    // 扩展一列
+    for (let j = 0; j <= m; j++) {
+        ways[j][0] = 0
+    } 
+
+    ways[1][1] = 1
+
+    for (let a = 1; a <= m; a++) {
+        for (let b = 1; b <= n; b++) {
+            if (a === 1 && b === 1) {
+                continue
+            }
+            ways[a][b] = ways[a - 1][b] + ways[a][b - 1]
+        }
+    }
+    return ways[m][n]
+}
