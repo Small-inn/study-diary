@@ -8,7 +8,8 @@ function Vue(options) {
     })
 
     observe(this.data)
-
+    new Compile(options.el, this)
+    options.mounted.call(this) // 事情处理好之后执行mounted函数
 
     Vue.prototype = {
         proxyKeys: function(key) {
