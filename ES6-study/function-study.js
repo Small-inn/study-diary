@@ -105,9 +105,43 @@ fn9(null, 1) // null, 1
 
 /**
  * 5.0 作用域
+ * 函数进行声明初始化的时候，参数形成一个单独的作用域(context)
+ * 等到初始化结束，这个作用域就会消失
  * */ 
 var x = 1
 function fn10(x, y = x) {
     console.log(y)
 }
-fn10(2) // 
+fn10(2) // 2
+
+let x = 1
+function fn11(y = x) {
+    let x = 2
+    console.log(y)
+}
+fn11() // 1
+
+function fn12(y = x) {
+    let x = 1
+    console.log(y)
+} 
+fn12() // x is not defined
+
+/**
+ * 6.0 rest参数
+ * ES6引入rest参数(...变量名)，用于获取函数的多余参数
+ * 注意，rest 参数之后不能再有其他参数（即只能是最后一个参数），否则会报错
+ * */ 
+function restA(...rest) {
+    let sum
+    for (let i of rest) {
+        sum += i
+    }
+    return sum
+}
+restA(1, 2, 3)
+
+function restB() {
+    return Array.prototype.slice.call(arguments).sort()
+} 
+const restC = (...num) => { num.sort() }

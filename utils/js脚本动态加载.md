@@ -10,3 +10,26 @@
     document.head.appendChild(script)
 })
 ```
+
+```
+    // loadScript('https://xxxx.com')
+    // function loadScript(url, callback) {
+    //   var script = document.createElement('script')
+    //   script.type = 'text/javascript'
+    //   script.async = false
+    //   if (script.readyState) { // IE
+    //     script.onreadyStatechange = function() {
+    //       if (script.readyState == 'loaded' || script.readyState == 'complete') {
+    //         script.onreadyStatechange = null
+    //         callback()
+    //       }
+    //     }
+    //   } else {
+    //     script.onload = function() {
+    //       callback()
+    //     }
+    //   }
+    //   script.url = url
+    //   document.head.appendChild(script)
+    // }
+```
