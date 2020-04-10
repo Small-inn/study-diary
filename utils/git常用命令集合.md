@@ -75,4 +75,4 @@
 
 ### 远程仓库删除分支后本地仍能查看的问题
 * git remote show origin 先查看remote地址，以及本地分支与之对应的关系
-git remote prune origin 删除远程仓库不存在的分支
+* git remote prune origin 删除远程仓库不存在的分支
