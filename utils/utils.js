@@ -218,13 +218,7 @@ const isPalindrome = str => {
 }
 
 const isPalindromeOther = str => {
-  return (
-    str ===
-    str
-      .split('')
-      .reverse()
-      .join('')
-  )
+  return (str === str.split('').reverse().join(''))
 }
 
 /**
