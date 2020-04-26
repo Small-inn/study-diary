@@ -100,9 +100,9 @@ const isPrime = n => {
  */
 const getGcd = (a, b) => {
   let temp // 用于存储中间变量
-  if (a < b) (temp = a), (a = b), (b = temp)
+  if (a < b)(temp = a), (a = b), (b = temp)
 
-  while (temp !== 0) (temp = a % b), (a = b), (b = temp)
+  while (temp !== 0)(temp = a % b), (a = b), (b = temp)
   return a
 }
 
@@ -166,7 +166,9 @@ const arrMin = arr => Math.min(...arr)
  * @return {array} 数组
  */
 const chunk = (arr, size) => {
-  Array.from({ length: Math.ceil(arr.length / size) }, (v, i) => {
+  Array.from({
+    length: Math.ceil(arr.length / size)
+  }, (v, i) => {
     arr.slice(i * size, i * (size + 1))
   })
 }
@@ -195,8 +197,7 @@ const countOccurrences = (arr, val) => {
  * @param {array} arr
  * @return {array}
  */
-const deepFlatten = arr =>
-  [].concat(...arr.map(v => (Array.isArray(v) ? deepFlatten(v) : v)))
+const deepFlatten = arr => [].concat(...arr.map(v => (Array.isArray(v) ? deepFlatten(v) : v)))
 
 const deepFlatten2 = arr => arr.reduce((x, y) => x.concat(y), [])
 
@@ -256,3 +257,36 @@ new Array(100).fill(1)
 const thousands = num => {
   return (num || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,')
 }
+
+// 多个数组之间的交集
+// 1.0
+const intersect = (...rest) => {
+  if (rest.length === 0) {
+    return []
+  }
+  if (rest.length === 1) {
+    return rest[0]
+  }
+  return rest.reduce((result, item, index) => {
+    return result.filter(v => item.includes(v))
+  }, [])
+}
+
+// Array.prototype.sort()
+/**  
+ * 默认的排序方法会将数组元素转换为字符串，然后比较字符串中字符的UTF-16编码顺序来进行排序
+ * */
+let testArr = [3, 15, 8, 29, 102, 22]
+testArr.sort()
+testArr.sort((a, b) => a - b)
+
+// 某公司 1 到 12 月份的销售额存在一个对象里面
+let obj = {
+  1: 222,
+  2: 123,
+  5: 888
+}
+const result = Array.from({
+  length: 12
+}).map((_, index) => obj[index + 1] || null)
+console.log(result)
