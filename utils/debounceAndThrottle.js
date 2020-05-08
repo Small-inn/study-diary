@@ -18,6 +18,17 @@ function debounce(fn, delay) {
   }
 }
 
+function debounce_01(fn, delay) {
+  let timer
+  return function(...arg) {
+    if (timer) clearInterval(timer)
+    timer = setTimeout(() => {
+      fn.apply(this, arg)
+    }, delay)
+  }
+
+} 
+
 // 调用
 window.scroll = debounce(function () {
   let scrollTop = document.body.scrollTop || document.documentElement.scrollTop
