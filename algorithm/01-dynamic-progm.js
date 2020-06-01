@@ -99,6 +99,18 @@ function climbStairs(n) {
     return ways[n - 1]
 }
 
+function climbStairs2(n) {
+    let ways = []
+    ways[0] = 0
+    ways[1] = 1
+    ways[2] = 2
+
+    for(let i = 3; i <= n; n++) {
+        ways[i] = ways[i - 1] + ways[i - 2]
+    }
+    return ways[n]
+}
+
 /** 
  * 动态规划之路径问题
  * 问题描述：
