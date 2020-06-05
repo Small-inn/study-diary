@@ -57,3 +57,16 @@ function curryStrong(f) {
     }
   }
 }
+
+// 
+function curry02() {
+  let allArgs = Array.prototype.slice.call(arguments)
+  let add = function() {
+    allArgs.push(...arguments)
+    return add
+  }
+  add.toString = function() {
+    return allArgs.reduce((a, b) => a + b)
+  }
+  return add
+}
