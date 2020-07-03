@@ -83,10 +83,13 @@
 
 1.什么是 DocType
    > 是用来来声明文档类型定义和 DTD(Document type definition, 文档类型定义),主要作用是文件的合法性校验
+
 2.浏览器是如何渲染的
    > HTML --> HTML Parser --> DOM Tree && Style Sheets --> CSS Parser --> Style Rules(CSSOM Tree) ==(Attachment)==> Render Tree --> Painting --> display
+
 3.reflow 和 repaint
-4布局 Layout
+    重排与重绘
+4.布局 Layout
 
 ## js 运行机制
 
@@ -132,13 +135,13 @@
 ## MVVM 框架
 
     1.了解 MVVM 框架吗
-    Vue.js React.js Angular.js
+        Vue.js React.js Angular.js
     2.谈谈对 MVVM 框架的认识
-    model ===> ViewModel <===> view
+        model ===> ViewModel <===> view
     3.双向绑定的原理
-    view ==(input 事件)==> data, data ==(Object.defineProperty)==> view
+        view ==(input 事件)==> data, data ==(Object.defineProperty)==> view
     4.设计模式
-    观察者模式：Observe 监听 Data 数据变化，通知 Dep 回调 Watcher，Watcher 订阅 Dep，更新 View
+        观察者模式：Observe 监听 Data 数据变化，通知 Dep 回调 Watcher，Watcher 订阅 Dep，更新 View
     5.生命周期
     6.源码
 

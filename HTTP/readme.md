@@ -59,7 +59,7 @@
 > 与其说是“无状态”，不如说是“无记忆”。这个 HTTP 协议呀，心非常大，请求与请求之间，是不关心对方的情况的。也就是说你上一秒出去一个 A 请求，下一秒出去一个 B 请求，那么 B 是完全感知不到 A 请求曾经存在过的，更别提了解 A 请求的内容了。总之，两个请求间毫无瓜葛。
 
  - 如何维持状态信息？
-   - cookie：cookie是存储在浏览器的小段文本，会在浏览器每次向同一服务器再发起请求时被携带并发送到服务器上。可以把状态信息方法在cookie里面，带个服务器
+   - cookie：cookie是存储在浏览器的小段文本，会在浏览器每次向同一服务器再发起请求时被携带并发送到服务器上。可以把状态信息方法在cookie里面，带给服务器
    - session：session是存储在服务器的用户数据。浏览器向服务器第一个发起请求时，服务器会为当前会话创建一个session，并且把对应的session-id写入cookie中，用来标识session。此后，每次用户请求都会携带一个包含session-id的cookie，服务器解析出了session-id，便能定位到的用户信息
 
 ## 2. HTTP的发展史
@@ -92,7 +92,7 @@
 
       这样一来，当客户端发现自己漏掉一个必要请求的时候，直接从缓存中就可以读到资源 B 了，而不必再消耗一个请求。
    4. 多路复用
-   
+
       HTTP1.x 并不能真正解决队头阻塞的问题。
 
       HTTP1.x 解决不了的问题，HTTP2.0 来解决！
@@ -100,3 +100,70 @@
       没错，多路复用其实就是进化版的长连接。
 
       在 HTTP 2.0 中，一次连接建立后，只要这个连接还在，那么客户端就可以在一个链接中批量发起多个请求。同时，请求与请求间完全不阻塞，A 请求的响应就算没回来，也不影响 B 请求收到自己的响应。请求与请求间做到了高度的独立，真正实现了并行请求。由此，彻底规避了队头阻塞问题。
+
+## 3.跨域
+### 3.1 什么是跨域
+   首先要知道”同源策略“，协议、域名、端口号均相同。同源策略是浏览器的一个安全功能，不同源的脚本在没有明确授权的情况下，不能读写对方资源。
+
+   不能读写资源的含义：
+   - Cookie、LocalStorage和IndexDB无法读取
+   - DOM和JS对象无法获取
+   - Ajax请求发不出去
+   只要是协议、域名、端口号任何一个不同，都被当做是不同的域，就是跨域。
+### 3.2 跨域解决方案
+   1. JSONP
+
+      js天然支持跨域，JSONP主要是允许用户传递一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹住JSONP数据，客户端可以随意定制函数处理返回数据
+      - 浏览器脚本定义callback，callback内是读取数据的逻辑
+      - 服务端调用，输出对callback的调用，把目标数据信息写入目标文件
+   2. CROS
+
+      全称（Cross-origin- resource sharing）。<br>
+      它允许浏览器指向不同源的服务器，发出XMLHttpRequest请求。需要浏览器和服务器同事支持，低版本IE不支持该功能
+
+      - 简单的CORS行为<br>
+         浏览器会把请求分为简单请求和非简单请求，对于这两种请求，CORS 的处理过程是不同的，我们先来看简单请求
+         - 请求方式为HEAD、POST 或者 GET
+         - http头信息不超出一下字段：Accept、Accept-Language 、 Content-Language、 Last-Event-ID、 Content-Type(限于三个值：application/x-www-form-urlencoded、multipart/form-data、text/plain)<br>
+      
+         满足以上两个条件，就是简单请求。对于简单请求，浏览器直接发出CORS请求。具体的就是在头信息中，增加一个Origin字段：
+         ```
+            Origin: http://hhhh.com
+         ```
+         Origin字段用来说明，本次请求来自哪个源（协议 + 域名 + 端口）。服务器根据这个值，决定是否同意这次请求。服务器处理的结果，分为两种情况：<br>
+
+         - 不同意： 如果Origin指定的源，不在许可范围内，服务器会返回一个正常的HTTP回应；浏览器发现，这个回应的头信息没有包含Access-Control-Allow-Origin字段，就知道出错了，从而抛出一个错误，被 XMLHttpRequest 的 onerror 回调函数捕获。
+         - 同意：如果Origin指定的域名在许可范围内，服务器返回的响应，会多出这个关键的头信息字段：
+         ```
+            Access-Control-Allow-Origin: http://hhhh.com
+         ```
+         这个字段用于说明服务器接纳哪些域名。它的值要么是请求时Origin字段的值，要么是一个*——表示接受任意域名的请求。
+      - 复杂的CORS行为
+         预检请求，请求方式为OPTIONS，目的是为了避免做无用功。
+   3. postMessage
+
+      通过注册监听信息的Message事件、调用发送信息的postMessage方法，可以实现跨域窗口通信
+
+      > 从广义上讲，一个窗口可以获得对另一个窗口的引用（比如 targetWindow = window.opener），然后在窗口上调用 targetWindow.postMessage() 方法分发一个 MessageEvent 消息。接收消息的窗口可以根据需要自由处理此事件。传递给 window.postMessage() 的参数（比如 message ）将通过消息事件对象暴露给接收消息的窗口。
+
+      **发信息的postMessage方法**
+      ```
+      otherWindow.postMessage(message, targetOrigin, [transfer])
+      ```
+      otherWindow是对目标窗口的引用；message是要发送的消息；targetOrigin是限定消息接受范围，一般是字符串或者URI，星号*则意味不限制
+
+      **接受信息的message事件**
+
+      ```
+      var onmessage = function(event) {
+         var data = event.data;
+         var origin = event.origin;
+      }
+      if (typeof window.addEventListener != 'undefined') {
+         window.addEventListener('message', onmessage, false);
+      } else if (typeof window.attachEvent != 'undefined') {
+         window.attachEvent('onmessage', onmessage);
+      }
+      ```
+
+
