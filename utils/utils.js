@@ -290,3 +290,19 @@ const result = Array.from({
   length: 12
 }).map((_, index) => obj[index + 1] || null)
 console.log(result)
+
+// 数字转成中文
+function toChineseNum(num) {
+  const model = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
+  const unit = ['', '十', '百', '千', '万', '十', '百', '千']
+  let numArr = num.toString().split('').reverse()
+  let sArr = []
+  numArr.map((item, index) => {
+    if (item === '0') {
+      sArr.push(model[item])
+    } else {
+      sArr.push(model[item] + '' + unit[index])
+    }
+  })
+  return sArr.reverse().join('')
+}
