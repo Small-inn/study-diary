@@ -306,3 +306,30 @@ function toChineseNum(num) {
   })
   return sArr.reverse().join('')
 }
+
+// Virtual DOM render方法
+const ul = h('ul', { id: 'list', style: 'color : red' }, [
+  h('li', { class: 'item' }, ['Item 1']),
+  h('li', { class: 'item' }, ['Item 2']),
+  h('li', { class: 'item' }, ['Item 3']),
+])
+
+class VNode {
+  constructor(tagName, props, children) {
+    this.tagName = tagName
+    this.props = props
+    this.children = children
+  }
+  render() {
+    const dom = document.createElement(this.tagName)
+    if (this.props) {
+      // const props = Object.keys(this.props)
+      // props.map(prop => dom.setAttribute(prop, this.props[prop]))
+      Object.entries(props).forEach(([key, value]) => dom.setAttribute(key, value)) 
+    }
+    if (this.children) {
+      this.children.map(child => dom.appendChild(child instanceof VNode ? child.render() : document.createTextNode(child)))
+    }
+    return dom
+  }
+}
