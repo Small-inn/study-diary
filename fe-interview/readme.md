@@ -68,7 +68,7 @@
     4).描述DOM事件捕获的具体流程
         window ---> document ---> html ---> body ---> .... ---> 目标元素
     5).Event对象的常见应用
-        (a).event.preventDefault() // 阻止默认事件
+        (a).event.preventDefault() // 阻止默认事件，例如，a链接
         (b).event.stopPropagation() // 阻止冒泡行为
         (c).event.stopImmediatePropagation() // 同一DOM注册多个事件时，只执行某一事件，事件优先级
         (d).event.currentTarget() // 获取被触发事件的目标元素
@@ -76,7 +76,7 @@
     6).自定义事件
         var eve = new Event('custome')
         ev.addEventListener('custome', function() { console.log('custome') })
-        ev.dispatchEvent(eve)
+        ev.dispatchEvent(eve) // 派发事件
     2.
 
 ## 渲染机制

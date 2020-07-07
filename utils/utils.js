@@ -325,7 +325,7 @@ class VNode {
     if (this.props) {
       // const props = Object.keys(this.props)
       // props.map(prop => dom.setAttribute(prop, this.props[prop]))
-      Object.entries(props).forEach(([key, value]) => dom.setAttribute(key, value)) 
+      Object.entries(this.props).forEach(([key, value]) => dom.setAttribute(key, value)) 
     }
     if (this.children) {
       this.children.map(child => dom.appendChild(child instanceof VNode ? child.render() : document.createTextNode(child)))
@@ -333,3 +333,4 @@ class VNode {
     return dom
   }
 }
+const h = (tagName, props, children) => new VNode(tagName, props, children)
