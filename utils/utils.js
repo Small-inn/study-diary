@@ -334,3 +334,24 @@ class VNode {
   }
 }
 const h = (tagName, props, children) => new VNode(tagName, props, children)
+
+// 有时候我们需要访问一个对象比较深的层次，对象某个属性不存在就会报错，例如
+/**
+ * let data = { a : { b: { c: 'script' } } }
+ * data.a.b.c ===> script
+ * data.a.b.c.d ===> 报错，代码停止执行
+ * 完成一个函数使得不存在的数据返回undefined
+ * safeGet(data, 'a.b.c.d') ===> undefined
+*/
+const safeGet = (data, path) => {
+  if (!path) return undefined
+  let arr = path.split('.')
+  try {
+    while (arr.length) {
+      data = data[arr.shift()]
+    }
+  } catch (err) {
+    return undefined
+  }
+  return data
+}
