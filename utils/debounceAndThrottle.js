@@ -35,6 +35,8 @@ window.scroll = debounce(function () {
   console.log(scrollTop)
 }, 200)
 
+const betterScroll = debounce(() => console.log('滚动'), 5000)
+betterScroll()
 // throttle中心思想：在某段时间内，不管你触发了多少次回调，都只认第一次，并在计时结束时予以响应
 
 /**
@@ -66,3 +68,5 @@ function throttle(fn, delay) {
     }
   }
 }
+const betterScroll = throttle(() => console.log('滚动'), 5000)
+betterScroll()
