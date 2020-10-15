@@ -84,4 +84,43 @@ class BST {
     }
     return node.key
   }
+  findMinNode(node) {
+    if (node === null) return null
+    while (node && node.left !== null) {
+      node = node.left
+    }
+    return node
+  }
+  removeNode(node, key) {
+    if (node === null) return null
+    if (key < node.key) {
+      node.left = this.removeNode(node.left, key)
+      return node
+    } else if (key > node.key) {
+      node.right = this.removeNode(node.right, key)
+      return node
+    } else {
+      if (node.left === null && node.right === null) {
+        node = null
+        return node
+      }
+      if (node.left === null) {
+        node = node.right
+        return node
+      } else if (node.right === null) {
+        node = node.right
+      }
+      let currNode = this.findMinNode(node.right)
+      node.key = currNode.key
+      node.right = this.removeNode(node.right, currNode.key)
+      return node
+    }
+  }
+  /**
+   * 删除一个节点
+   * */ 
+  remove(key) {
+    if (this.root === null) return null
+    this.root = this.removeNode(this.root, key)
+  }
 }
