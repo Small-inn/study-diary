@@ -204,6 +204,34 @@ const deepFlatten2 = arr => arr.reduce((x, y) => x.concat(y), [])
 const deepFlatten3 = arr => arr.flat(Infinity) // es6语法
 
 /**
+ * 按指定分隔符
+*/
+const deepFlatten4 = arr => {
+  const toString = Array.prototype.toString
+  Array.prototype.toString = function() {
+    return this.join(',')
+  }
+  let res = arr + ''
+  Array.prototype.toString = toString
+  return res
+}
+
+const deepFlatten5 = data => {
+  let res = []
+  const each = (arr) => {
+    arr.forEach(item => {
+      if (item instanceof Array) {
+        each(item)
+      } else {
+        res.push(item)
+      }
+    })
+  }
+  each(data)
+  return res.join(',')
+}
+
+/**
  *
  * 判断回文字符串
  * @param {string} str
@@ -355,3 +383,25 @@ const safeGet = (data, path) => {
   }
   return data
 }
+
+/**
+ * 检查浏览器是否支持触摸事件
+*/
+const touchSupported = () => {
+  ('ontouchstart' in window || window.DocumentTouch && document instanceof window.DocumentTouch)
+}
+
+/**
+ * 随机获取布尔值
+*/
+const randomBoolean = () => Math.random() >= 0.5
+
+/**
+ * 检查日期是否为工作日
+*/
+const isWeekDay = (date) => date.getDay() % 6 !== 0
+
+/**
+ * 从日期中获取时间
+*/
+const timeForDate = date => date.toTimeString().slice(0, 8)
