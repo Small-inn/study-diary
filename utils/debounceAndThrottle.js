@@ -61,7 +61,7 @@ function nFirstThrottle(fn, delay) {
 function throttle(fn, delay) {
   let last = 0
   return function () {
-    let curr = +new Date()
+    let curr = Date.now()
     if (curr - last > delay) {
       fn.apply(this, arguments)
       last = curr

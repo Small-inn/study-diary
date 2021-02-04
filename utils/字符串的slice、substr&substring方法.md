@@ -17,31 +17,43 @@ let str = 'hello world'
 
 <!-- 只传入一个参数 -->
 
+```javascript
 str.slice(3) // lo world
 str.substr(3) // lo world
 str.substring(3) // lo world
+```
 
 <!-- 传入两个参数 -->
 
+```javascript
 str.slice(3, 7) // lo w
 // substr 第二个参数表示返回的个数
 str.substr(3, 7) // lo worl
 str.substring(3, 7) // lo w
+```
 
 <!-- 传入一个负数 -->
 
+```javascript
 // slice 会将字符串的长度加上这个负数
 str.slice(-3) ==> str.slice(8) // rld
 // substr 方法将负数加上字符串的长度
 str.substr(-3) // rld
 // substring 方法将负数参数转化为 0
 str.substring(-3) =>> str.substring(0) // hello world
+```
 
 <!-- 第二个参数为负数 -->
-
+```javascript
 // slice 会将字符串的长度加上这个负数
 str.slice(3, -7) ==> str.slice(3, 4) // r
 // substr 方法将负数加上字符串的长度
 str.substr(3, -7) ==> str.substr(3, 0) // ''
 // substring 方法将所有负数参数转化为 0, 需要注意的是，这个方法如果后面的参数小于前面的参数会调换位置
 str.substring(3, -7) ==> str.substring(3, 0) ==> str.substring(0, 3) // hel
+```
+
+<!-- 截取字符串的后面（右边）几位 -->
+```javascript
+str.substr(-n, n)
+```

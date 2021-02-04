@@ -26,8 +26,9 @@ Function.prototype.myApply = function(context, parameter) {
   }
   let fn = Symbol()
   context[fn] = this
-  context[fn](parameter)
+  const res = context[fn](parameter)
   delete context[fn]
+  return res
 }
 
 /**

@@ -277,7 +277,7 @@ let a = 1,
   b = ((2)[(a, b)] = [b, a])
 
 // 快速创建100个1的数组
-const numArr = Array.from(new Array(100), (v, k) => 1)
+const numArr = Array.from(new Array(100), x => 1)
 
 new Array(100).fill(1)
 
