@@ -31,6 +31,19 @@ Function.prototype.myApply = function(context, parameter) {
   return res
 }
 
+Function.prototype.myApply2 = function(context) {
+  let ctx = context || window
+  ctx.fn = this
+  let res
+  if (arguments[1]) {
+    res = ctx.fn(...arguments[1])
+  } else {
+    res = ctx.fn()
+  }
+  delete ctx.fn
+  return res
+}
+
 /**
  * 3.0 myBind
  * */
