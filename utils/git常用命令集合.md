@@ -3,6 +3,29 @@
 ---
 - 修改git--config文件的url: https://[username]:[password]@github.com/....
 ---
+0. Git规范和changelog生成
+    - 加快Code Review的流程
+    - 根据Git Commit的元数据生成ChangeLog
+    - 后续的维护更加快捷方便
+    - 一般提交格式：
+        ```javascript
+            <type>(<scope>): <subject>
+            <BLANK LINE>
+            <body>
+            <BLANK LINE>
+            <footer>
+        ```
+        * type代表某次提交的类型，比如是修复还是新增feature。类型如下：
+        * feat: 新增feature
+        * fix： 修复bug
+        * docs：修改了文档，README，CHANGELOG
+        * style：修改样式，不改变逻辑
+        * refactor：代码重构
+        * perf：优化相关
+        * test：测试用例
+        * chore： 改变构建流程，增加依赖库等
+        * revert：回滚到上一个版本
+
 1. 比较差异
 - 比较的是暂存区和工作区的差异
 ```
