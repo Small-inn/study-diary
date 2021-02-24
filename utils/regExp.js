@@ -19,85 +19,85 @@ const IDReg = /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9
 // 邮箱验证
 const emailReg = /^([a-zA-Z0-9_\-])+@([a-zA-Z0-9_\-])+(\.[a-zA-Z0-9_\-])+$/
 export const isEmail = (s) => {
-  return /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(s)
+    return /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(s)
 }
 
 // 手机号
 const phoneReg = /^1[34578]\d{9}$/
 export const isPhone = (s) => {
-  return /^1[0-9]{10}$/.test(s)
+    return /^1[0-9]{10}$/.test(s)
 }
 
 // 电话号码
 export const isTel = (s) => {
-  return /^([0-9]{3,4}-)?[0-9]{7,8}$/.test(s)
+    return /^([0-9]{3,4}-)?[0-9]{7,8}$/.test(s)
 }
 
 // 是否是URL地址
 export const isURL = (s) => {
-  return /^http[s]?:\/\/.*/.test(s)
+    return /^http[s]?:\/\/.*/.test(s)
 }
 
 // 是否是微信环境
 export const isWeiXin = () => {
-  return ua.match(/microMessenger/i) === 'micromessenger'
+    return ua.match(/microMessenger/i) === 'micromessenger'
 }
 
 // 是否是移动端
 export const isDeviceMobile = () => {
-  return /android|webos|iphone|ipod|balckberry/i.test(ua)
+    return /android|webos|iphone|ipod|balckberry/i.test(ua)
 }
 
 // 是否是QQ浏览器
 export const isQQBrowser = () => {
-  return !!ua.match(/mqqbrowser|qzone|qqbrowser|qbwebviewtype/i)
+    return !!ua.match(/mqqbrowser|qzone|qqbrowser|qbwebviewtype/i)
 }
 
 // el是否包含某个class
 export const hasClass = (el, className) => {
-  let reg = new RegExp('(^|\\s)' + className + '(\\s|$)')
-  return reg.test(el.className)
+    let reg = new RegExp('(^|\\s)' + className + '(\\s|$)')
+    return reg.test(el.className)
 }
 
 // el添加某个class
 export const addClass = (el, className) => {
-  if (hasClass(el, className)) {
-    return
-  }
-  let newClass = el.className.split(' ')
-  newClass.push(className)
-  el.className = newClass.join(' ')
+    if (hasClass(el, className)) {
+        return
+    }
+    let newClass = el.className.split(' ')
+    newClass.push(className)
+    el.className = newClass.join(' ')
 }
 
 // el去除某个class
 export const removeClass = (el, className) => {
-  if (!hasClass(el, className)) {
-    return
-  }
-  let reg = new RegExp('(^|\\s)' + className + '(\\s|$)', 'g')
-  el.className = el.className.replace(reg, ' ')
+    if (!hasClass(el, className)) {
+        return
+    }
+    let reg = new RegExp('(^|\\s)' + className + '(\\s|$)', 'g')
+    el.className = el.className.replace(reg, ' ')
 }
 
 // 判断el是否在视口内
 export const elementIsVisibleInViewport = (el, partiallyVisible = false) => {
-  const { top, left, bottom, right } = el.getBoundingClientRect()
-  const { innerHeight, innerWidth } = window
-  return partiallyVisible
-      ? ((top > 0 && top < innerHeight) || (bottom > 0 && bottom < innerHeight)) &&
-      ((left > 0 && left < innerWidth) || (right > 0 && right < innerWidth))
-      : top >= 0 && left >= 0 && bottom <= innerHeight && right <= innerWidth
+    const { top, left, bottom, right } = el.getBoundingClientRect()
+    const { innerHeight, innerWidth } = window
+    return partiallyVisible
+        ? ((top > 0 && top < innerHeight) || (bottom > 0 && bottom < innerHeight)) &&
+        ((left > 0 && left < innerWidth) || (right > 0 && right < innerWidth))
+        : top >= 0 && left >= 0 && bottom <= innerHeight && right <= innerWidth
 }
 
 // 随机洗牌算法
 export const shuffle = (arr) => {
-  var result = [],
-      random
-  while (arr.length > 0) {
-      random = Math.floor(Math.random() * arr.length)
-      result.push(arr[random])
-      arr.splice(random, 1)
-  }
-  return result
+    var result = [],
+        random
+    while (arr.length > 0) {
+        random = Math.floor(Math.random() * arr.length)
+        result.push(arr[random])
+        arr.splice(random, 1)
+    }
+    return result
 }
 
 // 判断集合类型
@@ -224,18 +224,18 @@ export const numberToChinese = (num) => {
 
 // 追加URL参数
 export const appendQuery = (url, key, value) => {
-  var options = key
-  if (typeof options == 'string') {
-      options = {}
-      options[key] = value
-  }
-  options = $.param(options);
-  if (url.includes('?')) {
-      url += '&' + options
-  } else {
-      url += '?' + options
-  }
-  return url
+    var options = key
+    if (typeof options == 'string') {
+        options = {}
+        options[key] = value
+    }
+    options = $.param(options);
+    if (url.includes('?')) {
+        url += '&' + options
+    } else {
+        url += '?' + options
+    }
+    return url
 }
 
 // 16进制转换RGB、RGBA字符串
@@ -245,58 +245,58 @@ export const colorToRGB = (val, opa) => {
   var isOpa = typeof opa == 'number' //判断是否有设置不透明度
 
   if (!pattern.test(val)) { //如果值不符合规则返回空字符
-      return ''
-  }
+        return ''
+    }
 
-  var v = val.replace(/#/, '') //如果有#号先去除#号
-  var rgbArr = []
-  var rgbStr = ''
+    var v = val.replace(/#/, '') //如果有#号先去除#号
+    var rgbArr = []
+    var rgbStr = ''
 
-  for (var i = 0; i < 3; i++) {
-      var item = v.substring(i * 2, i * 2 + 2)
-      var num = parseInt(item, 16)
-      rgbArr.push(num)
-  }
+    for (var i = 0; i < 3; i++) {
+        var item = v.substring(i * 2, i * 2 + 2)
+        var num = parseInt(item, 16)
+        rgbArr.push(num)
+    }
 
-  rgbStr = rgbArr.join()
-  rgbStr = 'rgb' + (isOpa ? 'a' : '') + '(' + rgbStr + (isOpa ? ',' + opa : '') + ')'
-  return rgbStr
+    rgbStr = rgbArr.join()
+    rgbStr = 'rgb' + (isOpa ? 'a' : '') + '(' + rgbStr + (isOpa ? ',' + opa : '') + ')'
+    return rgbStr
 }
 
 // 检验密码强度
 export const checkPwd = (str) => {
-  var Lv = 0;
-  if (str.length < 6) {
-      return Lv
-  }
-  if (/[0-9]/.test(str)) {
-      Lv++
-  }
-  if (/[a-z]/.test(str)) {
-      Lv++
-  }
-  if (/[A-Z]/.test(str)) {
-      Lv++
-  }
-  if (/[\.|-|_]/.test(str)) {
-      Lv++
-  }
-  return Lv
+    var Lv = 0;
+    if (str.length < 6) {
+        return Lv
+    }
+    if (/[0-9]/.test(str)) {
+        Lv++
+    }
+    if (/[a-z]/.test(str)) {
+        Lv++
+    }
+    if (/[A-Z]/.test(str)) {
+        Lv++
+    }
+    if (/[\.|-|_]/.test(str)) {
+        Lv++
+    }
+    return Lv
 }
 
 // 去除空格,type: 1-所有空格 2-前后空格 3-前空格 4-后空格
 export const trim = (str, type) => {
-  type = type || 1
-  switch (type) {
-      case 1:
-          return str.replace(/\s+/g, "")
-      case 2:
-          return str.replace(/(^\s*)|(\s*$)/g, "")
-      case 3:
-          return str.replace(/(^\s*)/g, "")
-      case 4:
-          return str.replace(/(\s*$)/g, "")
-      default:
-          return str
-  }
+    type = type || 1
+    switch (type) {
+        case 1:
+            return str.replace(/\s+/g, "")
+        case 2:
+            return str.replace(/(^\s*)|(\s*$)/g, "")
+        case 3:
+            return str.replace(/(^\s*)/g, "")
+        case 4:
+            return str.replace(/(\s*$)/g, "")
+        default:
+            return str
+    }
 }
