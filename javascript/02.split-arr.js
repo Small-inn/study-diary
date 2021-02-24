@@ -6,7 +6,7 @@ let nArr = []
 for(let i = 0; i < sArr.length; i += 3) {
   nArr.push(sArr.slice(i, i + 3))
 }
-// console.log(nArr)
+console.log(nArr)
 /**、
  * 
  * 将分隔完成之后的数组找出数组中的最大值以及最大值的下标
