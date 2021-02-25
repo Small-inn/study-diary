@@ -147,14 +147,14 @@
       > 从广义上讲，一个窗口可以获得对另一个窗口的引用（比如 targetWindow = window.opener），然后在窗口上调用 targetWindow.postMessage() 方法分发一个 MessageEvent 消息。接收消息的窗口可以根据需要自由处理此事件。传递给 window.postMessage() 的参数（比如 message ）将通过消息事件对象暴露给接收消息的窗口。
 
       **发信息的postMessage方法**
-      ```
+      ```javascript
       otherWindow.postMessage(message, targetOrigin, [transfer])
       ```
       otherWindow是对目标窗口的引用；message是要发送的消息；targetOrigin是限定消息接受范围，一般是字符串或者URI，星号*则意味不限制
 
       **接受信息的message事件**
 
-      ```
+      ```javascript
       var onmessage = function(event) {
          var data = event.data;
          var origin = event.origin;
