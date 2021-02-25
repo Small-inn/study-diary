@@ -113,7 +113,7 @@ const getGcd = (a, b) => {
  */
 const gcdD = (x, y) => {
   if (y === 0) {
-    return a
+    return x
   } else {
     return gcdD(y, x % y)
   }
