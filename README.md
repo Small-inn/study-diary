@@ -10,3 +10,4 @@
 - [CSS3属性详解](https://github.com/Small-inn/study-diary/blob/master/H5%26%26C3/css3%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3.md)
 - [canvas学习笔记](https://github.com/Small-inn/study-diary/blob/master/H5%26%26C3/canvas-study.md)
 - [git命令集合](https://github.com/Small-inn/study-diary/blob/master/utils/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E9%9B%86%E5%90%88.md)
+- [vue原理解析](https://github.com/Small-inn/study-diary/blob/master/vue-interview/readme.md)

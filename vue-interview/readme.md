@@ -12,7 +12,7 @@
 3. vue通过以下4个步骤实现双向绑定
 
   **图解**
-  !()[]
+  ![](https://github.com/Small-inn/study-diary/blob/master/image/vue-core.png)
 
   - **实现一个监听器Observer**：对数据对象进行遍历，包括子属性对象的属性，利用Object.defineProperty()对属性都加上setter和getter。这样的话，给这个对象的某个属性赋值，就会触发setter，那么就能监听到了数据变化
   ```javascript
@@ -102,7 +102,7 @@
   ```
 
 
-  - **实现一个订阅器Dep**：订阅器采用 发布--订阅 设计模式（又叫观察者模式），用来收集订阅者Watcher，对监听器Observer和订阅者Watcher进行统一管理
+  - **实现一个订阅器Dep**：订阅器采用 发布--订阅 设计模式，用来收集订阅者Watcher，对监听器Observer和订阅者Watcher进行统一管理
   ```javascript
   function Dep() {
     this.subs = []
@@ -120,7 +120,8 @@
   Dep.target = null
   ```
 
-
+**双向数据绑定原理图**
+![](https://github.com/Small-inn/study-diary/blob/master/image/reactive-core.png)
 
 ```
   var obj = {}
