@@ -1,3 +1,8 @@
+/**
+ * 使用requestAnimationFrame实现setInterval
+ * 
+ * **/ 
+
 let mySetInterval = (callback, userTime) => {
   const Time = Date.now
   let startTime = Time() // 获取当前时间戳
