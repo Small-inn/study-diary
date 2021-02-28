@@ -11,3 +11,4 @@
 - [canvas学习笔记](https://github.com/Small-inn/study-diary/blob/master/H5%26%26C3/canvas-study.md)
 - [git命令集合](https://github.com/Small-inn/study-diary/blob/master/utils/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E9%9B%86%E5%90%88.md)
 - [vue原理解析](https://github.com/Small-inn/study-diary/blob/master/vue-interview/readme.md)
+- [webpack详解](https://github.com/Small-inn/study-diary/tree/master/webpack)
