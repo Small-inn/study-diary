@@ -58,7 +58,7 @@ function curryStrong(f) {
   }
 }
 
-// 
+// 实现02
 function curry02() {
   let allArgs = Array.prototype.slice.call(arguments)
   let add = function() {
@@ -69,4 +69,18 @@ function curry02() {
     return allArgs.reduce((a, b) => a + b)
   }
   return add
+}
+
+
+// 实现03
+function curry03(func) {
+  return function curried(...args) {
+    if (args.length > func.length) {
+      return func.apply(this, args)
+    } else {
+      return function(...args2) {
+        return curried.apply(this, args.concat(args2))
+      }
+    }
+  }
 }
