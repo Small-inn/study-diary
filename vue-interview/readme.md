@@ -205,27 +205,27 @@ Dep.target = null
 
 13. VNode描述一个DOM结构
 ```javascript
-{
-  tag: 'div',
-  props: {
-    className: 'container',
-    id: 'div1'
-  }
-  children: [
-    {
-      tag: 'p',
-      children: 'vdom'
-    },
-    {
-      tag: 'ul',
-      props: { style: 'font-size: 20px' },
-      children: [
-        {
-          tag: 'li',
-          children: 'a'
-        }
-      ]
+  {
+    tag: 'div',
+    props: {
+      className: 'container',
+      id: 'div1'
     }
-  ]
-}
+    children: [
+      {
+        tag: 'p',
+        children: 'vdom'
+      },
+      {
+        tag: 'ul',
+        props: { style: 'font-size: 20px' },
+        children: [
+          {
+            tag: 'li',
+            children: 'a'
+          }
+        ]
+      }
+    ]
+  }
 ```
