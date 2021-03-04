@@ -60,7 +60,7 @@
 * git init --初始化本地git环境
 * git clone XXX--克隆一份代码到本地仓库
 * git pull --把远程库的代码更新到工作台
-* git pull --rebase origin master --强制把远程库的代码跟新到当前分* 支上面
+* git pull --rebase origin master --强制把远程库的代码跟新到当前分支上面
 * git fetch --把远程库的代码更新到本地库
 * git add . --把本地的修改加到stage中
 * git commit -m 'comments here' --把stage中的修改提交到本地库
