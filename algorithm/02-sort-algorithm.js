@@ -5,6 +5,9 @@
  *  1.冒泡排序只会操作相邻的两个数据。
  *  2.每次冒泡操作都会对相邻的两个元素进行比较，看是否满足大小关系要求。如果不满足就让它俩互换。
  *  3.一次冒泡会让至少一个元素移动到它应该在的位置，重复 n 次，就完成了 n 个数据的排序工作
+ * 
+ *  时间复杂度： O(n^2)
+ * 
  */
 // 1.基础版
 const bubbleSort = arr => {
@@ -65,7 +68,7 @@ const insertionSort = arr => {
     preIndex = i - 1 // 带比较元素下标
     current = arr[i] // 当前元素
     while (preIndex >= 0 && current < arr[preIndex]) {
-      // 带比较元素师比当前元素大
+      // 当前元素比前一位的元素 小 时
       arr[preIndex + 1] = arr[preIndex] // 将带比较元素向后移一位
       preIndex-- // 游标前移
     }
@@ -78,6 +81,20 @@ const insertionSort = arr => {
   return arr
 }
 
+Array.prototype.insertionSort = function() {
+  for (let i = 0; i < this.length; i++) {
+    let temp = this[i], index = i
+    while (index > 0) {
+      if (this[index - 1] > temp) {
+        this[index] = this[index - 1]
+      } else {
+        break
+      }
+      index--
+    }
+    this[index] = temp
+  }
+}
 /**
  * 拆半排序:
  *  折半插入排序是直接插入排序的升级版，
@@ -142,4 +159,64 @@ const selectionSort = arr => {
     arr[minIndex] = temp
   }
   return arr
+}
+
+/**
+ * 归并排序
+ * 
+ * 
+ * 
+ * **/
+
+Array.prototype.mergeSort = function() {
+  const rec = (arr) => {
+    if (arr.length === 1) return arr
+    const mid = Math.floor(arr.length / 2)
+    const left = arr.slice(0, mid)
+    const right = arr.slice(mid, arr.length)
+    const orderLeft = rec(left)
+    const orderRight = rec(right)
+
+    const res = []
+    while (orderLeft.length || orderRight.length) {
+      if (orderLeft.length && orderRight.length) {
+        res.push(orderLeft[0] < orderRight[0] ? orderLeft.shift() : orderRight.shift())
+      } else if (orderLeft.length) {
+        res.push(orderLeft.shift())
+      } else if (orderRight.length) {
+        res.push(orderRight.shift())
+      }
+    }
+    return res
+  }
+}
+
+/**
+ * 快速排序
+ * 思路：
+ * ·分区：从数组中任意选择一个’基准‘，所有比基准小的元素放在基准前面，比基准大的元素放在基准后面
+ * ·递归：递归的对基准前后的子数组进行分组
+ * 
+ * **/
+
+Array.prototype.quickSort = function() {
+  const rec = () => {
+    if (arr.length === 1) return arr
+    const left = []
+    const right = []
+    const mid = arr[0]
+    for (let i = 0; i < array.length; i++) {
+      const e = array[i]
+      if (e < mid) {
+        left.push(e)
+      } else {
+        right.push(e)
+      }
+    }
+    return [...rec(left), ...rec[right]]
+  }
+  const res = rec(this)
+  res.fooEach((n, i) => {
+    this[i] = n
+  })
 }

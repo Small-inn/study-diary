@@ -58,6 +58,84 @@ let isValid = (s) => {
   return stack.length === 0
 }
 console.log(isValid('fasf(fasfafs)sdfa{fd{sf}a}'))
+
+
+// 两数之和
+
+let countTwo = (nums, target) => {
+  const map = new Map()
+  for (let i = 0; i < nums.length; i += 1) {
+    let n = nums[i]
+    let n2 = target - n
+    if (map.has(n2)) {
+      return [map.get(n2), i]
+    } else {
+      map.set(n, i)
+    }
+  }
+}
+console.log(countTwo([2, 7, 11, 15], 9))
+
+/**
+ * 给定一个字符串，找出不含有重复字符的最长子串的长度
+ * 
+ * 思路：滑动双指针L, R, 
+ * 
+ * **/
+let lengthOfLongestSubstring = (s) => {
+  let l = 0
+  let res = 0
+  const map = new Map()
+  for (let r = 0; r < s.length; r++) {
+    if (map.has(s[r]) && map.get(s[r]) >= l) { // 确保子串在滑动区间
+      l = map.get(s[r]) + 1
+    }
+    res = Math.max(res, r - l + 1)
+    map.set(s[r], r)
+  }
+  return res
+}
+console.log(lengthOfLongestSubstring('abcabcbb'))
+
+
+/**
+ * 最小覆盖子串
+ * 给你一个字符串S，一个字符串T，请在字符串S里面找出：包含T所有字符的最小子串
+ * 
+ * 示例：输入：S = 'ADOBECODEBANC' T = 'ABC'  输出： 'BANC'
+ * 思路：双指针滑动
+ * **/
+let minWindow = (s, t) => {
+  let l = 0
+  let r = 0
+  const need = new Map()
+  for (let c of t) {
+    need.set(c, need.has(t) ? need.get(c) + 1 : 1)
+  }
+  let needType = need.size
+  let res = ''
+  while (r < s.length) {
+    const c = s[r]
+    if (need.has(c)) {
+      need.set(c, need.get(c) - 1)
+      if (need.get(c) === 0) needType -= 1
+    }
+    while (needType === 0) { 
+      console.log(s.substring(l, r + 1))
+      const newRes = s.substring(l, r + 1)
+      if (!res || newRes.length < res.length) res = newRes
+      const c2 = s[l]
+      if (need.has(c2)) {
+        need.set(c2, need.get(c2) + 1)
+        if (need.get(c2) === 1) needType += 1
+      }
+      l += 1
+    }
+    r += 1
+  }
+  return res
+}
+console.log(minWindow('ADOBECODEBANC', 'ABC'))
 ```
 #### 散列
 #### 集合
