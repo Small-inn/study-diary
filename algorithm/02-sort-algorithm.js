@@ -220,3 +220,27 @@ Array.prototype.quickSort = function() {
     this[i] = n
   })
 }
+
+/**
+ * 二分搜索：
+ * 从数组中间开始，如果中间元素正好是目标值，则搜索结束
+ * 如果目标值大于或者小于中间元素，则在大于或者小于中间元素的那一半数组中搜索
+ * 
+ * **/
+Array.prototype.binarySearch = function(item) {
+  let low = 0;
+  let high = this.length - 1
+  while (low <= high) {
+    let mid = Math.floor((low + high) / 2)
+    if (item < this[mid]) {
+      high = mid - 1
+    } else if (item > this[mid]) {
+      low = mid + 1
+    } else {
+      return mid
+    }
+  }
+  return -1
+}
+
+console.log([1, 2, 3, 4, 5, 6, 7, 8, 9, 10].binarySearch(4))

@@ -60,7 +60,12 @@ let isValid = (s) => {
 console.log(isValid('fasf(fasfafs)sdfa{fd{sf}a}'))
 
 
-// 两数之和
+/**
+ * 两数之和
+ * 描述：
+ * 思路：类比相亲介绍所
+ * 
+*/
 
 let countTwo = (nums, target) => {
   const map = new Map()
