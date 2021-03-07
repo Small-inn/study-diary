@@ -216,7 +216,7 @@ Array.prototype.quickSort = function() {
     return [...rec(left), ...rec[right]]
   }
   const res = rec(this)
-  res.fooEach((n, i) => {
+  res.forEach((n, i) => {
     this[i] = n
   })
 }
@@ -226,6 +226,7 @@ Array.prototype.quickSort = function() {
  * 从数组中间开始，如果中间元素正好是目标值，则搜索结束
  * 如果目标值大于或者小于中间元素，则在大于或者小于中间元素的那一半数组中搜索
  * 
+ * log2(n)
  * **/
 Array.prototype.binarySearch = function(item) {
   let low = 0;
