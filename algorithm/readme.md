@@ -35,7 +35,12 @@ const valild = (s) => {
     if (item === '(' || item === '[' || item === '{') {
       stack.push(item)
     } else {
-      stack.pop()
+      const t = stack[stack.length - 1]
+      if ((t === '(' && c === ')') || (t === '[' && c === ']') || (t === '{' && c === '}')) {
+          stack.pop()
+      } else {
+          return false
+      }
     }
   }
 }

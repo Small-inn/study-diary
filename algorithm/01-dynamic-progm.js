@@ -144,3 +144,8 @@ function countPaths(m, n) {
     }
     return ways[m][n]
 }
+
+/**
+ * 
+ * leetcode 198: 打家劫舍问题
+*/
