@@ -6,7 +6,7 @@ const instance_of = (L, R) => {
     if (L === null) return false
     if (O === L) {
       return true
-      L = L.__proto__
     }
+    L = L.__proto__
   }
 }
