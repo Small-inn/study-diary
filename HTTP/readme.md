@@ -120,8 +120,8 @@
       - 服务端调用，输出对callback的调用，把目标数据信息写入目标文件
    2. CROS
 
-      全称（Cross-origin- resource sharing）。<br>
-      它允许浏览器指向不同源的服务器，发出XMLHttpRequest请求。需要浏览器和服务器同事支持，低版本IE不支持该功能
+      全称（Cross-origin-resource sharing）。<br>
+      它允许浏览器指向不同源的服务器，发出XMLHttpRequest请求。需要浏览器和服务器同是支持，低版本IE不支持该功能
 
       - 简单的CORS行为<br>
          浏览器会把请求分为简单请求和非简单请求，对于这两种请求，CORS 的处理过程是不同的，我们先来看简单请求
