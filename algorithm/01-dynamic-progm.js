@@ -86,29 +86,23 @@ function lcs(word1, word2) {
  * 假设你正在爬楼梯。需要 n 阶你才能到达楼顶。每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？
 */
 function climbStairs(n) {
-    if (n === 1 || n === 2) {
-        return n
+    if (n < 2) return 1
+    const dp = [1, 1]
+    for (let i = 2; i <= n; i++) {
+        dp[i] = dp[i - 1] + dp[i - 2]
     }
-    let ways = []
-    ways[0] = 1
-    ways[1] = 2
-
-    for (i = 2; i < n; i++) {
-        ways[i] = ways[i - 1] + ways[i - 2]
-    }
-    return ways[n - 1]
+    return dp[n]
 }
 
 function climbStairs2(n) {
-    let ways = []
-    ways[0] = 0
-    ways[1] = 1
-    ways[2] = 2
-
-    for(let i = 3; i <= n; n++) {
-        ways[i] = ways[i - 1] + ways[i - 2]
+    let dp0 = 1
+    let dp1 = 1
+    for(let i = 2; i <= n; n++) {
+        const dp2 = dp0 + dp1
+        dp0 = dp1
+        dp1 = dp2
     }
-    return ways[n]
+    return dp1
 }
 
 /** 
@@ -148,4 +142,35 @@ function countPaths(m, n) {
 /**
  * 
  * leetcode 198: 打家劫舍问题
+ * 
+ * f(k) = 从前K个房屋中偷窃到的最大数额
+ * Ak = 第k个房屋的钱数
+ * f(k) = max(f(k - 2) + Ak, f(k - 1))
 */
+
+function rob(nums) {
+    if (nums.length === 0) return 0
+    const dp = [0, nums[0]]
+    for (let i = 2; i <= nums.length; i++) {
+        dp[i] = Math.max(dp[i - 2] + nums[i - 1], dp[i - 1])
+    }
+    console.log(dp)
+    return dp[debounce.length - 1]
+}
+
+function rob2(nums) {
+    if (nums.length === 0) return 0
+    let dp0 = 0
+    let dp1 = nums[0]
+    for (let i = 2; i <= nums.length; i++) {
+        const dp2 = Math.max(dp0 + nums[i - 1], dp1)
+        dp0 = dp1
+        dp2 = dp1
+    }
+    console.log(dp1)
+    return dp1
+}
+
+
+
+
