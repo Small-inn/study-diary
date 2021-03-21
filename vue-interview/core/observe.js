@@ -31,3 +31,48 @@ Observer.prototype = {
 //         }
 //     })
 // }
+
+
+// 简版
+
+function updateView() {
+    console.log('视图更新了')
+}
+
+// 重新定义数组原型
+const oldArrPrototype = Array.prototype
+const arrProto = Object.create(oldArrPrototype)
+['push', 'pop', 'shift', 'unshift'].forEach(e => {
+    arrProto[e] = function() {
+        updateView()
+        oldArrPrototype[e].call(this, ...arguments)
+    }
+})
+
+function defineReactive(target, key, val) {
+    // 深度监听
+    observe(val)
+    Object.defineProperty(target, key, {
+        get() {
+            return val
+        },
+        set(newVal) {
+            if (val !== newVal) {
+                // 深度监听
+                observer(newVal)
+                val = newVal
+                updateView()
+            }
+        }
+    })
+}
+
+
+function observe(target) {
+    if (typeof target !== 'object' || target === null) {
+        return target
+    }
+    for (const key in object) {
+        defineReactive(target, key, target[key])
+    }
+}
