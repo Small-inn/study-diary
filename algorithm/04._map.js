@@ -85,8 +85,9 @@ function lengthOfLongSubstring(s) {
 
 /**
  * 76: 最小覆盖子串
- * 
+ * 双指针滑动窗口
+ * 移动右指针，找到包含T的子串，移动左指针
 */
 function minWindow(s, t) {
-  
+
 }
