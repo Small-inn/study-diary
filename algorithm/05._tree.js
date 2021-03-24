@@ -30,7 +30,7 @@ const bfs = (root) => {
  * JS中常用Object表示
 */
 
-// 先序遍历
+// 先序遍历 根 ---> 左 ---> 右
 const preOrder = (root) => {
     if (!root) return
     console.log(root.val)
@@ -39,11 +39,21 @@ const preOrder = (root) => {
 }
 
 // 中序遍历
+// 左 ---> 根 ---> 右
 const cenOrder = (root) => {
     if (!root) return
     cenOrder(root.left)
     console.log(root.val)
     cenOrder(root.right)
+}
+
+// 后序遍历
+// 左 ---> 右 ---> 根
+const cenOrder = (root) => {
+    if (!root) return
+    cenOrder(root.left)
+    cenOrder(root.right)
+    console.log(root.val)
 }
 
 /**
@@ -55,10 +65,32 @@ const maxDepth = (root) => {
     let res = 0
     const dfs = (n, l) => {
         if (!root) return
-        res = Math.max(res, l)
+        if (!n.left && !n.right) {
+            res = Math.max(res, l)
+        }
         console.log(n.val)
         dfs(n.left, l++)
         dfs(n.right, l++)
     }
-    dfs(root)
+    dfs(root, 1)
+}
+
+
+/**
+ * 二叉树的最小深度
+ * 使用广度优先遍历
+ * 
+*/
+
+const minDepth = (root, l) => {
+    if (!root) return
+    const q = [[root, 1]]
+    while (q.length) {
+        const [n, l] = q.shift()
+        if (!n.left && !n.right) {
+            return l
+        }
+        if (n.left) q.push([n.left, l++])
+        if (n.right) q.push([n.right, l++])
+    }
 }
