@@ -114,12 +114,15 @@
 - git push origin --delete BranchName --删除远程分支
 - git checkout -b test origin/test 切换并绑定远程分支
 - git fetch --all git reset --hard origin/master git pull origin/master (三个命令)
--
+- git config --list 查看Git设置
+- git config --global user.name 
+- git config --global user.email
 
 ### 远程仓库删除分支后本地仍能查看的问题
 
 - git remote show origin 先查看 remote 地址，以及本地分支与之对应的关系
 - git remote prune origin 删除远程仓库不存在的分支
+
 
 ### npm 命令
 
