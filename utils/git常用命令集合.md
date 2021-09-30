@@ -3,6 +3,7 @@
 ---
 
 - 修改 git--config 文件的 url: https://[username]:[password]@github.com/....
+- github token: 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
 
 ---
 
