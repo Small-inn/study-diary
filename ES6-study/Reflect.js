@@ -12,3 +12,19 @@ if (Reflect.defineProperty()) {}
 
 console.log('assign' in Object)
 console.log(Reflect.has(Object, 'assign'))
+
+
+Reflect.get
+Reflect.set
+Reflect.apply
+Reflect.defineProperty
+Reflect.deleteProperty
+Reflect.construct
+    Reflect.construct(Target, [...args]) === new Target(...args)
+Reflect.has
+Reflect.ownKeys
+Reflect.isExtensible
+Reflect.preventExtensions
+Reflect.getPrototypeOf
+Reflect.setPrototypeOf
+Reflect.getOwnPropertyDescriptor
