@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01.组件之间的双向数据绑定</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                // count: 1,
+                count: 'a',
+                count2: 3
+            }
+        },
+        // template: `<counter v-model="count" />`
+        // template: `<counter v-model:app="count" v-model:app2="count2" />`
+        template: `<counter v-model.uppercase="count" />`
+    })
+
+    app.component('counter', {
+        // props: ['modelValue'], // 这里必须是modelValue,原生值为modelValue
+        // props: ['app', 'app2'], // 可以传入两个值
+        props: {
+            modelValue: {
+                'modelValue': String,
+                'modelModifiers': {
+                    default: () => ({})
+                }
+
+            }
+        },
+        methods: {
+            handleClick() {
+                let newValue = this.modelValue + 'b'
+                if (this.modelModifiers.uppercase) {
+                    newValue = newValue.toUpperCase()
+                }
+                this.$emit('update:uppercase', newValue) // 事件名也必须是update:modelValue
+                // this.$emit('update:app', this.app + 2) // 事件名与之对应的model值
+            },
+            // handleClick1() {
+            //     this.$emit('update:app2', this.app2 + 3)
+            // }
+        },
+        // <button @click="handleClick">{{modelValue}}</button>
+        template: `<button @click="handleClick">{{modelValue}}</button>`
+        // template: `
+        //     <button @click="handleClick">{{app}}</button><br>
+        //     <button @click="handleClick1">{{app2}}</button>
+        // `
+    })
+
+    app.mount('#root')
+</script>
+</html>
