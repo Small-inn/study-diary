@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02.vue过渡与动画</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script>
+    const app = Vue.createApp({
+        template: `
+            <div>{{name}}</div>
+            <child2 />    
+        `,
+        setup(props, context) {
+
+            const { reactive, toRefs } = Vue
+
+            const data = reactive({name: 'lx', age: 20})
+
+            let { name } = toRefs(data) // { value: '' }
+
+            setTimeout(() => {
+                name.value = 'lee'
+            }, 1000)
+
+            return {
+                name
+            }
+        }
+    })
+
+    app.component('child', {
+        setup(props, context) {
+            const { attrs, slots, emit } = context
+            console.log(attrs)
+            console.log(slots.default())
+            function handleClick() { emit('onChange') }
+            return {
+                handleClick
+            }
+        }
+    })
+
+    // 2.0
+
+    const listRelativeEffect = () => {
+        const { reactive } = Vue
+        const list = reactive([])
+
+        const submit = (item) => {
+            list.push(item)
+        }
+        return {
+            list,
+            submit
+        }
+    }
+
+    const inputEffect = () => {
+        const { ref } = Vue
+        const inputValue = ref('')
+        const inputChange = (e) => {
+            inputValue.value = e.target.value
+        }
+        return {
+            inputValue,
+            inputChange
+        }
+    }
+
+    app.component('child2', {
+        setup() {
+            const { list, submit } = listRelativeEffect()
+            const { inputValue, inputChange } = inputEffect()
+            return {
+                list,
+                inputValue,
+                inputChange,
+                submit
+            }
+        },
+        template: `
+            <div>
+                <input :value="inputValue" @input="inputChange" />
+                <button @click="() => submit(inputValue)">提交</button>
+                <div v-for="item in list" :key="item">{{item}}</div>
+            </div>
+        `
+    })
+
+    app.mount('#root')
+</script>
+</html>

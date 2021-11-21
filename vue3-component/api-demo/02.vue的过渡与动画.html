@@ -6,6 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>02.vue过渡与动画</title>
     <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        @keyframes leftToRight {
+            0% {
+                transform: translateX(-100px);
+            }
+            50% {
+                transform: translateX(-50px);
+            }
+            0% {
+                transform: translateX(0px);
+            }
+        }
+
+        .animate {
+            animation: leftToRight 3s;
+        }
+    </style>
 </head>
 <body>
     <div id="root"></div>
@@ -17,7 +34,7 @@
                 
             }
         },
-        template: `<demo />`
+        template: `<div class="animate">Hello World</div>`
     })
 
     app.component('demo', {
