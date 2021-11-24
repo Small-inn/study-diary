@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04.vue computed</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script>
+    const app = Vue.createApp({
+        template: `
+            <div>
+                Name: <input v-model="name" />
+            </div>
+            <div>{{name}}</div>
+            <div>
+                englishName: <input v-model="englishName" />
+            </div>
+            <div>{{englishName}}</div>
+        `,
+        setup() {
+            const { reactive, watch, toRefs, watchEffect } = Vue
+            const nameObj = reactive({
+                name: 'lx',
+                englishName: 'Small-inn'
+            })
+            // lazy 惰性执行
+            watch([() => nameObj.name, () => nameObj.englishName], ([currentName, currentEnname], [prevName, prevEnname]) => {
+                console.log(currentName + currentEnname + '----' + prevName + prevEnname)
+            })
+
+            // 立即执行， immediate
+            watchEffect(() => {
+
+            })
+
+            const { name, englishName } = toRefs(nameObj)  
+
+            return {
+                name,
+                englishName
+            }
+        }
+    })
+
+    app.mount('#root')
+</script>
+</html>
