@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04.vue computed</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script>
+    const app = Vue.createApp({
+        template: `
+            <span>{{countObj.count}}</span> ------ <span>{{countTemp}}</span>
+        `,
+        setup() {
+            const { reactive, computed } = Vue
+            const countObj = reactive({ count: 0 })
+
+            let countTemp = computed({
+                get: () => {
+                    return countObj.count + 5
+                },
+                set: (para) => {
+                    countObj.count = para - 5
+                }
+            })
+
+            setTimeout(() => {
+                countTemp.value = 100
+            }, 3000)
+
+            return {
+                countObj,
+                countTemp
+            }
+        }
+    })
+
+    app.mount('#root')
+</script>
+</html>

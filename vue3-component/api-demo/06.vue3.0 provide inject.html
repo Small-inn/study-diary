@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06.vue3.0 provide inject</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script>
+    const app = Vue.createApp({
+        template: `
+            <child />
+        `,
+        setup() {
+            const { ref, provide, readonly } = Vue
+            const name = ref('lx')
+            provide('name', readonly(name))
+            provide('handleClick', (value) => {
+                name.value = value
+            })
+            return {
+                name
+            }
+        }
+    })
+
+    app.component('child', {
+        template: `
+            <div @click="handleClick">{{name}}</div>
+        `,
+        setup() {
+            const { inject } = Vue
+            const name = inject('name')
+            const click = inject('handleClick')
+            const handleClick = () => {
+                // name.value = 'hhhhh'
+                click('small-inn')
+            }
+            return {
+                name,
+                handleClick
+            }
+        }
+    })
+
+    app.mount('#root')
+</script>
+</html>
