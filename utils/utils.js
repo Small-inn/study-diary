@@ -405,3 +405,38 @@ const isWeekDay = (date) => date.getDay() % 6 !== 0
  * 从日期中获取时间
 */
 const timeForDate = date => date.toTimeString().slice(0, 8)
+
+
+/**
+ * 
+ * 控制请求并发
+*/
+
+const limitRequest = (urls = [], limit = 5) => {
+  return new Promise((resolve, reject) => {
+    const len = urls.length
+    let count = 0
+
+    const start = async () => {
+      const url = urls.shift()
+      try {
+        const res = await axios.post(url)
+        if (count === len - 1) {
+          resolve(res)
+        } else {
+          count++
+          start()
+        }
+      } catch (e) {
+        count++
+        start()
+        console.log(e)
+      }
+    }
+    
+    while(limit > 0) {
+      start()
+      limit -= 1
+    }
+  })
+}
