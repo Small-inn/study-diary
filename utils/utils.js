@@ -440,3 +440,38 @@ const limitRequest = (urls = [], limit = 5) => {
     }
   })
 }
+
+/**
+ * 
+ * LRU算法实现
+*/
+
+class LRU {
+  constructor(size) {
+    this.size = size
+    this.cache = new Map()
+  }
+  get(key) {
+    let hasKey = this.cache.has(key)
+    if (hasKey) {
+      const val = this.cache.get(key)
+      this.cache.delete(key)
+      this.cache.set(key, val)
+      return val
+    } else {
+      return -1
+    }
+  }
+  put(key, val) {
+    let hasKey = this.cache.has(key)
+    if (hasKey) {
+      this.cache.delete(key)
+    }
+    this.cache.set(key, val)
+
+    let keys = this.cache.keys()
+    if (this.cache.size > this.size) {
+      this.cache.delete(this.cache.delete(keys.next().value))
+    }
+  }
+}
