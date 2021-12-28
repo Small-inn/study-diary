@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas雪花特效</title>
+    <style>
+        #canvas {
+            background-color: #EE5237;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="300" height="300"></canvas>
+
+    <script>
+        const canvas = document.getElementById('canvas')
+        console.log(canvas)
+        const ctx = canvas.getContext('2d')
+        let width = canvas.width
+        let height = canvas.height
+
+        // ctx.fillStyle = '#FF0000'
+        // ctx.fillRect(0, 0, width, height)
+
+        let count = 200
+        const snows = []
+
+        for (let i = 0; i < count; i++) {
+            snows.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                r: Math.random() * 5
+            })
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, width, height)
+            ctx.beginPath()
+            for (let i = 0; i < count; i++) {
+                let snow = snows[i]
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'
+                ctx.shadowBlur = 5
+                ctx.shadowColor = 'rgba(0, 0, 0, 0.5)'
+                ctx.moveTo(snow.x, snow.y)
+                ctx.arc(snow.x, snow.y, snow.r, 0, Math.PI * 2)
+
+                snow.x = snow.x > width ? 0 : snow.x + ((5 - snow.r) / 10)
+				snow.y = snow.y > height ? 0 : snow.y + ((7 - snow.r) / 10)
+            }
+            ctx.fill()
+
+            // snow.x = snow.x > W ? 0 : snow.x + snow.toX
+			// snow.y = snow.y > H ? 0 : snow.y + snow.toY
+
+            requestAnimationFrame(draw)
+        }
+
+        function move() {
+            for (let i = 0; i < count; i++) {
+                let snow = snows[i]
+                snow.x += ((5 - snow.r) / 10)
+                snow.y += ((7 - snow.r) / 10)
+
+                if (snow.y > height) {
+                    snow[i] = {
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        r: Math.random() * 5
+                    }
+                }
+            }
+        }
+
+        draw()
+        // setInterval(draw, 10)
+        // requestAnimationFrame(draw)
+    </script>
+</body>
+</html>

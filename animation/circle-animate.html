@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>测试圆环动画</title>
+</head>
+<body>
+  <canvas id="canvas" width="300" height="300"></canvas>
+  <script>
+
+    const canvas = document.querySelector('#canvas')
+    let ctx = canvas.getContext('2d')
+
+    let width = canvas.width
+    let height = canvas.height
+
+
+        
+
+    // ctx.translate(width / 2, height / 2) // 将画布原点移动到中心位置
+    // ctx.scale(-1, 1) // 翻转180°
+    // ctx.rotate(-Math.PI / 2) // 旋转-90°
+
+    let defaultAngle = Math.PI * 2
+
+    animate()
+
+    function animate() {
+      defaultAngle -= 0.05
+      draw()
+
+      // if (defaultAngle <= Math.PI * 2 * (1 - 3/4)) {
+      if (defaultAngle <= 0) {
+        draw()
+        return
+      }
+
+      window.requestAnimationFrame(animate)
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height)
+
+      // 属性对象
+      let circleObj = {
+        ctx: ctx,
+        /*圆心*/
+        x: width / 2,
+        // x: 0,
+        y: height / 2,
+        // y: 0,
+        /*半径*/
+        radius: width / 2 - 10,//半径比canvas宽的一半要小
+        /*环的宽度*/
+        lineWidth: 10
+      }
+      /*灰色的圆环*/
+      circleObj.startAngle = Math.PI * 2
+      circleObj.endAngle = defaultAngle // 对应 360° 的 1/4 即 90°
+      circleObj.color = '#e9e9e9'
+      drawCircle(circleObj)
+
+      /*有色的圆环*/
+      /*开始的度数-从上一个结束的位置开始*/
+      circleObj.startAngle = circleObj.endAngle
+      /*结束的度数 Math.PI * 2 */
+      circleObj.endAngle = Math.PI * 2
+      // 创建渐变
+      let grd = ctx.createLinearGradient(width / 2, 0, 0, height)
+      grd.addColorStop(0, '#FFE7CB')
+      grd.addColorStop(1, '#E89650')
+
+      circleObj.color = grd
+      // circleObj.color = "#dd6200"
+      drawCircle(circleObj)
+    }
+
+    /*画曲线*/
+    function drawCircle(circleObj) {
+        let ctx = circleObj.ctx
+
+        // 文字
+        ctx.font = 'bold 20px Arial'
+        ctx.fillStyle = 'blue'
+        ctx.textAlign = 'center'
+        ctx.textBaseline = 'middle'
+        ctx.moveTo(width / 2, height / 2)
+        ctx.fillText('100%', width/2, height/2)
+        
+        ctx.beginPath()
+        ctx.arc(circleObj.x, circleObj.y, circleObj.radius, circleObj.startAngle, circleObj.endAngle, false)
+        //设定曲线粗细度
+        ctx.lineWidth = circleObj.lineWidth
+        //给曲线着色
+        ctx.strokeStyle = circleObj.color
+        //连接处样式
+        ctx.lineCap = 'round'
+        //给环着色
+        ctx.stroke()
+        ctx.closePath()
+    }
+  </script>
+</body>
+</html>
