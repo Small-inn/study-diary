@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import axios from 'axios'
 let wxShare = {}
 wxShare.install = function(Vue, options) {
@@ -7,19 +6,16 @@ wxShare.install = function(Vue, options) {
   wechatSDK.src = 'http://res.wx.qq.com/open/js/jweixin-1.0.0.js'
   document.getElementsByTagName('body')[0].appendChild(wechatSDK)
 
-  let wxSignature = shareInfo => {
+  let wxSignature = (shareInfo) => {
     new Vue({
       data: {
         shareInfo: {}
       },
       created() {
-        axios
-          .post()
-          .then(res => {
-            // 配置二次分享权限
-            this.wxConfig(res, shareInfo)
-          })
-          .catch(error => {})
+        axios.post().then(res => {
+          // 配置二次分享权限
+          this.wxConfig(res, shareInfo)
+        }).catch(error => {})
       },
       methods: {
         wxConfig(res, shareInfo) {
@@ -120,7 +116,7 @@ import wxShare from '@/assets/static/wxShare'
 Vue.use(wxShare)
 
 // 在组件中：
-this.$wxShare({
+this.$wxShare.wxShare({
   title: share.title,
   intro: share.intro,
   thumb: share.thumb,
