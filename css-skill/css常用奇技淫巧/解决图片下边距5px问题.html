@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    /* 方案1： 给父元素设置font-size：0 */
+    .box {
+      font-size: 0; 
+    }
+    /* 方案2：将图片转换成块元素 */
+    img {
+      display: block;
+    }
+    /* 方案3：对齐方式 */
+    img {
+      vertical-align: bottom;
+    }
+    /* 给父元素设置line-height: 5px; */
+    .box {
+      line-height: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <img src="https://i0.hippopx.com/photos/179/171/625/sparkler-holding-hands-firework-preview.jpg" alt="">
+  </div>
+</body>
+</html>
