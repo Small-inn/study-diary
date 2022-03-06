@@ -108,7 +108,7 @@
 
 ## 常用的一些命令
 
-- git remote add origin 远程仓库地址 --将当前的仓库与远程的仓库连接起来
+- git remote add origin 远程仓库地址 --**将当前的仓库与远程的仓库连接起来*
 - git branch --set-upstream debug origin/test --远程分支关联
 - git push -u origin branch(分支名称) --绑定远程分支
 - git branch -d BranchName --删除本地分支
