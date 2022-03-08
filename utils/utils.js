@@ -475,3 +475,27 @@ class LRU {
     }
   }
 }
+
+/**
+ * 数字千分位
+ * 
+ * */ 
+
+function formatWithArray(number) {
+  let arr = (number + '').split('.')
+
+  let int = arr[0].split('')
+  // 小数部分
+  let fraction = arr[1] || ''
+
+  let res = ''
+  let len = int.length
+  int.reverse().forEach((v, i) => {
+    if (i !== 0 && i % 3 ===0) {
+      res = v + ',' + res
+    } else {
+      res = v + res
+    }
+  })
+  return res + (!!fraction ? '.' + fraction : '')
+}
