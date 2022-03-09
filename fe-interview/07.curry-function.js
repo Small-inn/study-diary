@@ -73,6 +73,9 @@ function curry02() {
 
 
 // 实现03
+// func要转换的函数
+// func.length 函数参数长度
+// args.length
 function curry03(func) {
   return function curried(...args) {
     if (args.length > func.length) {
@@ -84,4 +87,26 @@ function curry03(func) {
     }
   }
 }
+
+
+let user = {
+  name: 'John',
+  go: function() { console.log(this.name) }
+};
+
+(user.go)()
+
+
+let obj, method
+
+obj = {
+  go: function() { console.log(this) }
+};
+
+obj.go();
+(obj.go)();
+(method = obj.go)();
+(obj.go || obj.stop)();
+
+
 
