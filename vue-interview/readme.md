@@ -308,7 +308,7 @@ Dep.target = null
         - window.onpopState：监听浏览器的前进、后退
         ```javascript
           document.getElementById('btn').addEventListener('click', () => {
-            const state = { name: 'page1 }
+            const state = { name: 'page1' }
             history.pushState(state, '', 'pageUrl')
           })
           window.onpopState = (event) => {
