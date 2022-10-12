@@ -31,7 +31,7 @@ let lastSecTime = new Date(new Date().toLocaleDateString()).getTime() + 24 * 360
  * 返回指定时间戳之间的间隔
  * */
 function getTimeInterval(startTime, endTime) {
-    let oneDaySecond = 86400
+    let oneDaySecond = 86400  // 一天的秒数
     let runTime = parseInt((endTime - startTime) / 1000) // 获取时间间隔秒数
     let year = Math.floor(runTime / oneDaySecond / 365) // 获取年
     runTime = runTime % (oneDaySecond * 365)
