@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TTI</title>
+  </head>
+  <body>
+    <script>
+      // 1. 计算可交互时间
+      window.addEventListener('load', (e) => {
+        // Time to Interactive TTI （可交互时间）
+        let timeling = performance.getEntries('navigation')[0]
+        // 计算tti domInteractive - fetchStart
+        let tti = timeling.domInteractive - timeling.fetchStart
+        console.log(tti)
+      })
+
+      // 2. 监听long tasks
+      let performanceObserve = new PerformanceObserver((list) => {
+        for (let entry of list.getEntries()) {
+          console.log(entry)
+        }
+      })
+
+      performanceObserve.observe({ entryTypes: ['longtask'] })
+
+      // 3. 监听浏览器 用户是否在当前页浏览
+      let vEvent = 'visibilitychange'
+      if (document.webkitHidden != undefined) {
+        vEvent = 'webkitvisibilitychange'
+      }
+      function fn() {
+        if (document.hidden || document.webkitHidden) {
+          console.log('web page is hidden')
+        } else {
+          console.log('web page is show')
+        }
+      }
+      window.addEventListener(vEvent, fn)
+
+     // 4. 监听网络变化
+     let connection = window.navigator.connection || navigator.webkitConnection || navigator.mozConnection
+     let type = connection.effectiveType
+     connection.addEventListener('change', () => {
+      console.log('connection type changed from ' + type + 'to' + connection.effectiveType)
+     })
+    </script>
+  </body>
+</html>

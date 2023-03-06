@@ -5,7 +5,7 @@
  * @return {Array}
  *
  */
-const hex2rgb = color => {
+const hex2rgb = (color) => {
   if (!color) return false
   color = color.substring(1)
   color = color.toLowerCase()
@@ -25,7 +25,7 @@ const hex2rgb = color => {
  * @param {String} color 十六进制的颜色变量
  * @return {boolean}
  */
-const isDeepColor = color => {
+const isDeepColor = (color) => {
   const rgb = hex2rgb(color)
   if (rgb[0] * 0.299 + rgb[1] * 0.578 + rgb[2] * 0.114 >= 192) {
     return false // 浅色
@@ -41,7 +41,7 @@ const isDeepColor = color => {
  */
 
 // 数组版
-const fibn = n => {
+const fibn = (n) => {
   let fibArr = [0, 1]
   if (n <= 2) return 1
   for (let i = 0; i < n; i++) {
@@ -50,7 +50,7 @@ const fibn = n => {
   return fibArr[n]
 }
 //  递归版
-const fibonacci = n => {
+const fibonacci = (n) => {
   if (n === 1 || n === 2) return n
   return fibonacci(n - 1) + fibonacci(n - 2)
 }
@@ -61,7 +61,7 @@ const fibonacci = n => {
  * @return {boolean} true 是 false 否
  */
 // 第一版
-const isPrimeOne = n => {
+const isPrimeOne = (n) => {
   let divisor = 2
   while (n > divisor) {
     if (n % divisor === 0) {
@@ -72,7 +72,7 @@ const isPrimeOne = n => {
   }
 }
 // 升级版
-const isPrime = n => {
+const isPrime = (n) => {
   // 任何数字都不能被大于它一半的数整除，如果一个数不能被3整除，它不可能被大于它1/3的数整除
   let divisor = 3
   let limit = Math.sqrt(n) // 求这个数的平方根
@@ -100,9 +100,9 @@ const isPrime = n => {
  */
 const getGcd = (a, b) => {
   let temp // 用于存储中间变量
-  if (a < b)(temp = a), (a = b), (b = temp)
+  if (a < b) (temp = a), (a = b), (b = temp)
 
-  while (temp !== 0)(temp = a % b), (a = b), (b = temp)
+  while (temp !== 0) (temp = a % b), (a = b), (b = temp)
   return a
 }
 
@@ -133,9 +133,9 @@ const gcd = (x, y) => (!y ? x : gcd(y, x % y))
  * @return {number}
  *  */
 
-const arrayGcd = arr => {
+const arrayGcd = (arr) => {
   const gcd = (x, y) => (!y ? x : gcd(y, x % y))
-  return arr.reduce((a, b) => gcd(a, b)) 
+  return arr.reduce((a, b) => gcd(a, b))
 }
 
 /**
@@ -144,7 +144,7 @@ const arrayGcd = arr => {
  * @return {number}
  */
 
-const arrayLcm = arr => {
+const arrayLcm = (arr) => {
   const gcd = (x, y) => (!y ? x : gcd(y, x % y))
   const lcm = (x, y) => (x * y) / gcd(x, y)
   return arr.reduce((a, b) => {
@@ -156,8 +156,8 @@ const arrayLcm = arr => {
  * 获取数组中的最大、最小值
  * @param {array} arr
  */
-const arrMax = arr => Math.max(...arr)
-const arrMin = arr => Math.min(...arr)
+const arrMax = (arr) => Math.max(...arr)
+const arrMin = (arr) => Math.min(...arr)
 
 /**
  * 按照一定的size将一个数组切分成含有size个数的更小块的数组
@@ -166,17 +166,20 @@ const arrMin = arr => Math.min(...arr)
  * @return {array} 数组
  */
 const chunk = (arr, size) => {
-  Array.from({
-    length: Math.ceil(arr.length / size)
-  }, (v, i) => {
-    arr.slice(i * size, i * (size + 1))
-  })
+  Array.from(
+    {
+      length: Math.ceil(arr.length / size),
+    },
+    (v, i) => {
+      arr.slice(i * size, i * (size + 1))
+    }
+  )
 }
 
 /**
  * 去除数组里的falsey的元素（该值布尔运算值为false的）
  */
-const compact = arr => arr.filter(Boolean)
+const compact = (arr) => arr.filter(Boolean)
 
 /**
  *
@@ -197,18 +200,19 @@ const countOccurrences = (arr, val) => {
  * @param {array} arr
  * @return {array}
  */
-const deepFlatten = arr => [].concat(...arr.map(v => (Array.isArray(v) ? deepFlatten(v) : v)))
+const deepFlatten = (arr) =>
+  [].concat(...arr.map((v) => (Array.isArray(v) ? deepFlatten(v) : v)))
 
-const deepFlatten2 = arr => arr.reduce((x, y) => x.concat(y), [])
+const deepFlatten2 = (arr) => arr.reduce((x, y) => x.concat(y), [])
 
-const deepFlatten3 = arr => arr.flat(Infinity) // es6语法
+const deepFlatten3 = (arr) => arr.flat(Infinity) // es6语法
 
 /**
  * 按指定分隔符
-*/
-const deepFlatten4 = arr => {
+ */
+const deepFlatten4 = (arr) => {
   const toString = Array.prototype.toString
-  Array.prototype.toString = function() {
+  Array.prototype.toString = function () {
     return this.join(',')
   }
   let res = arr + ''
@@ -216,10 +220,10 @@ const deepFlatten4 = arr => {
   return res
 }
 
-const deepFlatten5 = data => {
+const deepFlatten5 = (data) => {
   let res = []
   const each = (arr) => {
-    arr.forEach(item => {
+    arr.forEach((item) => {
       if (item instanceof Array) {
         each(item)
       } else {
@@ -237,7 +241,7 @@ const deepFlatten5 = data => {
  * @param {string} str
  * @return {boolean}
  */
-const isPalindrome = str => {
+const isPalindrome = (str) => {
   let i,
     len = str.length
   for (i = 0; i < len / 2; i++) {
@@ -246,8 +250,8 @@ const isPalindrome = str => {
   return true
 }
 
-const isPalindromeOther = str => {
-  return (str === str.split('').reverse().join(''))
+const isPalindromeOther = (str) => {
+  return str === str.split('').reverse().join('')
 }
 
 /**
@@ -257,7 +261,7 @@ const isPalindromeOther = str => {
  * @return {number}
  *
  */
-const missingNumber = arr => {
+const missingNumber = (arr) => {
   const ARR_LEN = arr.length + 1
   const TOTAL_COUNT = (ARR_LEN * (ARR_LEN + 1)) / 2
   let sum
@@ -268,7 +272,7 @@ const missingNumber = arr => {
 }
 
 // 判断是否是闰年
-const leapYear = year => {
+const leapYear = (year) => {
   return !(year % (year % 100 ? 4 : 400))
 }
 
@@ -277,12 +281,12 @@ let a = 1,
   b = ((2)[(a, b)] = [b, a])
 
 // 快速创建100个1的数组
-const numArr = Array.from(new Array(100), x => 1)
+const numArr = Array.from(new Array(100), (x) => 1)
 
 new Array(100).fill(1)
 
 // 货币千分位
-const thousands = num => {
+const thousands = (num) => {
   return (num || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,')
 }
 
@@ -296,12 +300,12 @@ const intersect = (...rest) => {
     return rest[0]
   }
   return rest.reduce((result, item, index) => {
-    return result.filter(v => item.includes(v))
+    return result.filter((v) => item.includes(v))
   }, [])
 }
 
 // Array.prototype.sort()
-/**  
+/**
  * 默认的排序方法会将数组元素转换为字符串，然后比较字符串中字符的UTF-16编码顺序来进行排序
  * */
 let testArr = [3, 15, 8, 29, 102, 22]
@@ -312,10 +316,10 @@ testArr.sort((a, b) => a - b)
 let obj = {
   1: 222,
   2: 123,
-  5: 888
+  5: 888,
 }
 const result = Array.from({
-  length: 12
+  length: 12,
 }).map((_, index) => obj[index + 1] || null)
 console.log(result)
 
@@ -353,10 +357,18 @@ class VNode {
     if (this.props) {
       // const props = Object.keys(this.props)
       // props.map(prop => dom.setAttribute(prop, this.props[prop]))
-      Object.entries(this.props).forEach(([key, value]) => dom.setAttribute(key, value)) 
+      Object.entries(this.props).forEach(([key, value]) =>
+        dom.setAttribute(key, value)
+      )
     }
     if (this.children) {
-      this.children.map(child => dom.appendChild(child instanceof VNode ? child.render() : document.createTextNode(child)))
+      this.children.map((child) =>
+        dom.appendChild(
+          child instanceof VNode
+            ? child.render()
+            : document.createTextNode(child)
+        )
+      )
     }
     return dom
   }
@@ -370,7 +382,7 @@ const h = (tagName, props, children) => new VNode(tagName, props, children)
  * data.a.b.c.d ===> 报错，代码停止执行
  * 完成一个函数使得不存在的数据返回undefined
  * safeGet(data, 'a.b.c.d') ===> undefined
-*/
+ */
 const safeGet = (data, path) => {
   if (!path) return undefined
   let arr = path.split('.')
@@ -386,31 +398,31 @@ const safeGet = (data, path) => {
 
 /**
  * 检查浏览器是否支持触摸事件
-*/
+ */
 const touchSupported = () => {
-  ('ontouchstart' in window || window.DocumentTouch && document instanceof window.DocumentTouch)
+  'ontouchstart' in window ||
+    (window.DocumentTouch && document instanceof window.DocumentTouch)
 }
 
 /**
  * 随机获取布尔值
-*/
+ */
 const randomBoolean = () => Math.random() >= 0.5
 
 /**
  * 检查日期是否为工作日
-*/
+ */
 const isWeekDay = (date) => date.getDay() % 6 !== 0
 
 /**
  * 从日期中获取时间
-*/
-const timeForDate = date => date.toTimeString().slice(0, 8)
-
+ */
+const timeForDate = (date) => date.toTimeString().slice(0, 8)
 
 /**
- * 
+ *
  * 控制请求并发
-*/
+ */
 
 const limitRequest = (urls = [], limit = 5) => {
   return new Promise((resolve, reject) => {
@@ -433,8 +445,8 @@ const limitRequest = (urls = [], limit = 5) => {
         console.log(e)
       }
     }
-    
-    while(limit > 0) {
+
+    while (limit > 0) {
       start()
       limit -= 1
     }
@@ -442,9 +454,9 @@ const limitRequest = (urls = [], limit = 5) => {
 }
 
 /**
- * 
+ *
  * LRU算法实现
-*/
+ */
 
 class LRU {
   constructor(size) {
@@ -478,8 +490,8 @@ class LRU {
 
 /**
  * 数字千分位
- * 
- * */ 
+ *
+ * */
 
 function formatWithArray(number) {
   let arr = (number + '').split('.')
@@ -491,7 +503,7 @@ function formatWithArray(number) {
   let res = ''
   let len = int.length
   int.reverse().forEach((v, i) => {
-    if (i !== 0 && i % 3 ===0) {
+    if (i !== 0 && i % 3 === 0) {
       res = v + ',' + res
     } else {
       res = v + res

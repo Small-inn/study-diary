@@ -15,6 +15,8 @@
 
 ### XRF 攻击
 
+* CSRF(Cross-site request forgery) 跨站请求伪造， One Click Attack或者Session Riding，在用户不知情的情况下执行了攻击者伪造的请求。
+
 - 跨站请求伪造
 
 ### DDOS
@@ -41,3 +43,9 @@ function genPsd(password) {
 
 console.log(genPsd(123))
 ```
+
+### 越权
+
+* 水平越权：获取到跟访者同级别的数据
+* 垂直越权：获取到更高级别用户的数据或权限
+
